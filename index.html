@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Hidden Chest Studio</title>
-    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400&family=JetBrains+Mono:wght@400;500&family=Playfair+Display:ital,wght@1,400;1,700&family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -63,31 +63,83 @@
     .sec-h2 em { font-family:'Playfair Display',serif; font-style:italic; color:var(--red); }
 
     /* WHO WE ARE */
-    .about-grid { display:grid; grid-template-columns:1fr 1fr; gap:96px; align-items:start; margin-top:48px; }
-    .about-p { font-size:15px; color:#444; line-height:1.8; margin:0 0 24px; }
-    .about-p em { font-style:italic; color:#666; }
+    .about-grid { display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:start; margin-top:0; }
+    .about-left { }
+    .about-left .sec-eyebrow { margin-bottom:20px; }
+    .about-left h2 { font-family:'Barlow',sans-serif; font-weight:900; font-size:clamp(36px,3.8vw,54px); letter-spacing:-.025em; color:var(--cream); line-height:1.0; margin:0; }
+    .about-left h2 em { font-family:'Playfair Display',serif; font-style:italic; color:var(--red); }
+    .about-right { padding-top:4px; }
+    .about-p { font-size:15px; color:rgba(240,235,227,.38); line-height:1.8; margin:0 0 20px; }
+    .about-p em { font-style:italic; color:rgba(240,235,227,.5); }
+    .about-stats { display:flex; gap:64px; margin-top:40px; padding-top:32px; border-top:1px solid var(--border); }
+    .about-stat-num { font-family:'Barlow',sans-serif; font-size:42px; font-weight:900; color:var(--cream); letter-spacing:-.02em; margin-bottom:6px; }
+    .about-stat-label { font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:.14em; text-transform:uppercase; color:#444; }
+    /* legacy stat-block kept for compat */
     .stat-block { padding:18px 0; border-bottom:1px solid var(--border); display:flex; align-items:flex-end; justify-content:space-between; }
     .stat-block:last-child { border-bottom:none; }
     .stat-big { font-family:'Barlow',sans-serif; font-size:36px; font-weight:900; letter-spacing:-.02em; color:var(--cream); }
     .stat-sub { font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:.12em; text-transform:uppercase; color:#444; margin-top:5px; }
 
     /* SERVICES */
-    .services-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-top:48px; }
-    .svc-card { background:#141414; border:1px solid var(--border); padding:28px 20px; display:flex; flex-direction:column; justify-content:space-between; }
-    .svc-title { font-family:'Barlow',sans-serif; font-size:21px; font-weight:800; color:var(--cream); margin:0 0 12px; }
-    .svc-desc { font-size:14px; color:#555; line-height:1.7; }
-    .svc-tag { display:inline-block; margin-top:24px; font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:.08em; text-transform:uppercase; color:#333; border:1px solid rgba(255,255,255,.08); padding:5px 10px; }
+    .services-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:0; margin-top:40px; border-top:1px solid var(--border); }
+    .svc-card { background:transparent; border-right:1px solid var(--border); border-bottom:1px solid var(--border); padding:32px 28px 36px; display:flex; flex-direction:column; justify-content:space-between; position:relative; }
+    .svc-card:last-child { border-right:none; }
+    .svc-card::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:var(--red); }
+    .svc-num { font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:.14em; text-transform:uppercase; color:var(--red); margin-bottom:14px; }
+    .svc-title { font-family:'Barlow',sans-serif; font-size:22px; font-weight:900; color:var(--cream); margin:0 0 14px; letter-spacing:-.01em; }
+    .svc-desc { font-size:14px; color:#555; line-height:1.7; margin-bottom:28px; }
+    .svc-tags { display:flex; gap:8px; flex-wrap:wrap; }
+    .svc-tag { display:inline-block; font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:.08em; text-transform:uppercase; color:#555; border:1px solid rgba(255,255,255,.12); padding:5px 10px; }
 
-    /* PORTFOLIO */
-    .portfolio-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:40px; }
-    .port-card { background:#141414; border:1px solid var(--border); overflow:hidden; }
-    .port-thumb { width:100%; height:200px; background:#111; position:relative; overflow:hidden; display:flex; align-items:center; justify-content:center; }
-    .port-thumb img { width:100%; height:100%; object-fit:cover; opacity:.5; position:absolute; inset:0; }
-    .port-thumb-label { font-family:'Barlow',sans-serif; font-size:28px; font-weight:900; color:rgba(255,255,255,.07); position:relative; z-index:1; letter-spacing:-.02em; }
-    .port-body { padding:20px; }
-    .port-client { font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.14em; text-transform:uppercase; color:var(--red); margin-bottom:6px; }
-    .port-title { font-family:'Barlow',sans-serif; font-size:18px; font-weight:800; color:var(--cream); margin-bottom:8px; }
-    .port-year { font-family:'JetBrains Mono',monospace; font-size:10px; color:#444; }
+    /* TRUSTED BY */
+    .partners-header { display:flex; align-items:flex-end; justify-content:space-between; margin-bottom:36px; }
+    .partners-cta { display:inline-flex; padding:10px 22px; border:1px solid rgba(255,255,255,.15); color:var(--cream); font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.1em; text-transform:uppercase; text-decoration:none; }
+    .partners-cta:hover { background:rgba(255,255,255,.05); }
+    .partners-sub { font-size:14px; color:#555; line-height:1.7; max-width:520px; margin-top:12px; }
+    .partners-grid { display:grid; grid-template-columns:repeat(5,1fr); border:1px solid rgba(255,255,255,.06); }
+    .partner-box { padding:28px 20px; border-right:1px solid rgba(255,255,255,.06); display:flex; align-items:center; justify-content:center; min-height:90px; }
+    .partner-box:last-child { border-right:none; }
+    .partner-name { font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:#444; text-align:center; }
+
+    /* PRESS */
+    .press-header { display:flex; align-items:flex-end; justify-content:space-between; margin-bottom:32px; }
+    .press-kit-link { font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:#444; text-decoration:none; }
+    .press-kit-link:hover { color:var(--cream); }
+    .press-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:0; border:1px solid rgba(255,255,255,.06); }
+    .press-card { padding:24px 20px; border-right:1px solid rgba(255,255,255,.06); display:flex; flex-direction:column; gap:8px; }
+    .press-card:last-child { border-right:none; }
+    .press-outlet { font-family:'Barlow',sans-serif; font-size:16px; font-weight:800; color:var(--cream); }
+    .press-quote { font-family:'Barlow',sans-serif; font-size:12px; color:#444; line-height:1.55; font-style:italic; flex:1; }
+    .press-year { font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:.1em; color:#333; margin-top:auto; }
+
+    /* GAMES BENTO */
+    .games-header { display:flex; align-items:flex-end; justify-content:space-between; margin-bottom:24px; }
+    .games-all { font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:#444; text-decoration:none; }
+    .games-all:hover { color:var(--cream); }
+    .games-bento { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+    /* Flagship */
+    .game-flagship { grid-column:span 2; position:relative; overflow:hidden; min-height:400px; background:#0d0d0d; display:flex; flex-direction:column; }
+    .game-flagship-bg { position:absolute; inset:0; }
+    .game-flagship-bg img { width:100%; height:100%; object-fit:cover; opacity:.45; }
+    .game-flagship-overlay { position:absolute; inset:0; background:linear-gradient(to top,rgba(0,0,0,.92) 45%,rgba(0,0,0,.2) 100%); }
+    .game-flagship-top { position:relative; z-index:3; padding:24px 24px 0; }
+    .game-flagship-badge { display:inline-block; padding:4px 10px; background:var(--red); font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:.12em; text-transform:uppercase; color:#fff; }
+    .game-flagship-content { position:relative; z-index:3; padding:24px; margin-top:auto; }
+    .game-platform { font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:.1em; text-transform:uppercase; color:rgba(255,255,255,.35); margin-bottom:10px; }
+    .game-flagship-content h3 { margin:0 0 10px; font-family:'Barlow',sans-serif; font-weight:900; font-size:clamp(26px,2.4vw,36px); letter-spacing:-.02em; color:var(--cream); line-height:.95; }
+    .game-flagship-content h3 em { font-family:'Playfair Display',serif; font-style:italic; color:var(--red); }
+    .game-flagship-desc { font-size:14px; color:#777; line-height:1.65; margin:0 0 20px; }
+    .game-flagship-cta { display:inline-flex; padding:10px 22px; background:var(--red); color:#fff; font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.1em; text-transform:uppercase; text-decoration:none; }
+    .game-flagship-cta:hover { background:#c8241b; }
+    /* Small cards */
+    .game-card { background:#111; border:1px solid var(--border); padding:24px; display:flex; flex-direction:column; min-height:180px; }
+    .game-card-icon { width:30px; height:30px; }
+    .game-card-name-big { font-family:'Barlow',sans-serif; font-size:22px; font-weight:900; color:var(--cream); letter-spacing:-.02em; margin:16px 0 2px; }
+    .game-card-sub { font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:.1em; text-transform:uppercase; color:#444; }
+    .game-card-bottom { margin-top:auto; padding-top:20px; }
+    .game-card-tags { display:flex; gap:6px; flex-wrap:wrap; margin-bottom:8px; }
+    .game-card-tag { font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:.1em; text-transform:uppercase; color:#444; border:1px solid rgba(255,255,255,.06); padding:3px 8px; }
+    .game-card-title { font-family:'Barlow',sans-serif; font-size:15px; font-weight:800; color:var(--cream); }
 
     /* FLAGSHIP */
     .flagship { position:relative; overflow:hidden; padding:88px 96px; border-top:1px solid var(--border); min-height:500px; }
@@ -141,18 +193,28 @@
       nav,.hero,.section,.contact,.community,.flagship,footer { padding-left:40px; padding-right:40px; }
       .services-grid { grid-template-columns:1fr 1fr; }
       .about-grid,.contact-grid,.community-grid { gap:48px; }
+      .partners-grid { grid-template-columns:repeat(3,1fr); }
+      .press-grid { grid-template-columns:repeat(3,1fr); }
     }
     @media (max-width:768px) {
       nav { padding:0 24px; }
       .hero,.section,.contact,.community,.flagship { padding-left:24px; padding-right:24px; }
       footer { padding:24px; flex-wrap:wrap; gap:16px; }
       .about-grid,.contact-grid,.community-grid { grid-template-columns:1fr; }
-      .portfolio-grid { grid-template-columns:1fr 1fr; }
+      .games-bento { grid-template-columns:1fr 1fr; }
+      .game-flagship { grid-column:span 2; }
+      .partners-grid { grid-template-columns:repeat(2,1fr); }
+      .press-grid { grid-template-columns:repeat(2,1fr); }
+      .partners-header { flex-direction:column; align-items:flex-start; gap:16px; }
+      .about-stats { gap:32px; }
     }
     @media (max-width:580px) {
       .nav-links { display:none; }
-      .services-grid,.portfolio-grid { grid-template-columns:1fr; }
+      .services-grid,.games-bento { grid-template-columns:1fr; }
+      .game-flagship { grid-column:span 1; min-height:340px; }
       .hero-stats { flex-wrap:wrap; gap:24px; }
+      .partners-grid,.press-grid { grid-template-columns:1fr 1fr; }
+      .about-stats { flex-wrap:wrap; gap:24px; }
     }
   </style>
 </head>
@@ -211,63 +273,205 @@
 
   <!-- 01 WHO WE ARE -->
   <div class="section" id="about">
-    <div class="sec-eyebrow"><div class="sec-line"></div><span class="sec-tag">01 / Who We Are</span></div>
-    <h2 class="sec-h2">A studio at the intersection<br>of games, <em>tech &amp; story.</em></h2>
     <div class="about-grid">
-      <div>
-        <p class="about-p" id="about-p1">Hidden Chest is a Malaysian game development studio delivering award-calibre interactive experiences across PC, console, and mobile, and bespoke brand installations. Founded in 2020, we operate at the intersection of game design, technology, and storytelling.</p>
-        <p class="about-p" id="about-p2">We've shipped interactive projects for AirAsia and Khazanah Nasional, and our own flagship IP — <em>Midwest 90: Rapid City</em> — is in early access on Steam and Itch.io. Every project is managed directly by a co-founder. No middlemen, no overhead.</p>
+      <div class="about-left">
+        <div class="sec-eyebrow"><div class="sec-line"></div><span class="sec-tag">01 / Who We Are</span></div>
+        <h2>A studio built<br>on craft, community,<br><em>and creativity.</em></h2>
       </div>
-      <div>
-        <div class="stat-block"><div><div class="stat-big">3</div><div class="stat-sub">Projects Shipped</div></div></div>
-        <div class="stat-block"><div><div class="stat-big" style="font-size:24px">2020</div><div class="stat-sub">Year Founded</div></div></div>
-        <div class="stat-block"><div><div class="stat-label">Clients</div><div style="font-family:'Barlow',sans-serif;font-size:20px;font-weight:800;color:var(--cream);margin-top:6px">AirAsia · Khazanah</div></div></div>
-        <div class="stat-block"><div><div class="stat-label">Flagship IP</div><div style="font-family:'Barlow',sans-serif;font-size:15px;font-weight:700;color:#666;font-style:italic;margin-top:6px">Midwest 90: Rapid City</div></div><div style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:#fff;background:var(--red);padding:4px 10px">In Dev</div></div>
+      <div class="about-right">
+        <p class="about-p" id="about-p1">Hidden Chest Studios is a Malaysian game development studio delivering award-calibre interactive experiences across PC, mobile, and bespoke brand installations. Founded in 2020, we operate at the intersection of game design, technology, and storytelling.</p>
+        <p class="about-p" id="about-p2">We've shipped interactive projects for AirAsia and Khazanah Nasional, and our own flagship IP — <em>Midwest 90: Rapid City</em> — is in early access on Steam and Itch.io. Every project is managed directly by a co-founder. No middlemen, no outsourcing the craft.</p>
       </div>
+    </div>
+    <div class="about-stats">
+      <div><div class="about-stat-num">5+</div><div class="about-stat-label">Projects Shipped</div></div>
+      <div><div class="about-stat-num">6</div><div class="about-stat-label">Industry Awards</div></div>
+      <div><div class="about-stat-num">3</div><div class="about-stat-label">Co-Founders</div></div>
     </div>
   </div>
 
-  <!-- 02 SERVICES -->
-  <div class="section" id="services">
-    <div class="sec-eyebrow"><div class="sec-line"></div><span class="sec-tag">02 / What We Build</span></div>
-    <h2 class="sec-h2">We build <em>games.</em><br>We build experiences.</h2>
-    <div class="services-grid">
-      <div class="svc-card"><div><div class="svc-title">Game Development</div><p class="svc-desc">Custom game production from concept to launch — PC, console, and mobile titles built to ship.</p></div><span class="svc-tag">Unity · Godot</span></div>
-      <div class="svc-card"><div><div class="svc-title">Branded Gamification</div><p class="svc-desc">Interactive games and minigames tailored to your brand — boosting engagement, loyalty, and reach.</p></div><span class="svc-tag">Brand Events</span></div>
-      <div class="svc-card"><div><div class="svc-title">AR / VR Installations</div><p class="svc-desc">Bespoke augmented and virtual reality experiences for exhibitions, product launches, and campaigns.</p></div><span class="svc-tag">Immersive</span></div>
-      <div class="svc-card"><div><div class="svc-title">Mobile Apps</div><p class="svc-desc">Full mobile title development — from casual games to gamified apps — built for iOS and Android.</p></div><span class="svc-tag">iOS · Android</span></div>
-    </div>
-  </div>
-
-  <!-- 03 PORTFOLIO -->
+  <!-- 02 PORTFOLIO -->
   <div class="section" id="portfolio">
-    <div class="sec-eyebrow"><div class="sec-line"></div><span class="sec-tag">03 / Portfolio</span></div>
-    <h2 class="sec-h2">Work we've <em>shipped.</em></h2>
-    <div class="portfolio-grid">
-      <div class="port-card">
-        <div class="port-thumb" style="background:#0e0e0e"><div class="port-thumb-label">AirAsia</div></div>
-        <div class="port-body"><div class="port-client">AirAsia</div><div class="port-title">Branded Interactive Experience</div><div class="port-year">2023</div></div>
+    <div class="games-header">
+      <div>
+        <div class="sec-eyebrow"><div class="sec-line"></div><span class="sec-tag">02 / Games &amp; Projects</span></div>
+        <h2 class="sec-h2">What We've <em>Built.</em></h2>
       </div>
-      <div class="port-card">
-        <div class="port-thumb" style="background:#0a0a0a"><div class="port-thumb-label">Khazanah</div></div>
-        <div class="port-body"><div class="port-client">Khazanah Nasional</div><div class="port-title">Interactive Brand Installation</div><div class="port-year">2023</div></div>
-      </div>
-      <div class="port-card">
-        <div class="port-thumb" style="background:#0d0d0d;position:relative">
-          <img id="flagship-thumb-img" src="https://img.youtube.com/vi/jbaT0JWABKA/maxresdefault.jpg" alt="Midwest 90">
-          <div style="position:absolute;inset:0;z-index:2;display:flex;align-items:center;justify-content:center;padding:20px;text-align:center"><span style="font-family:'Barlow',sans-serif;font-size:18px;font-weight:900;color:var(--cream);letter-spacing:-.01em">Midwest 90: Rapid City</span></div>
+      <a href="#" class="games-all">All projects →</a>
+    </div>
+    <div class="games-bento">
+
+      <!-- Flagship: Midwest 90 -->
+      <div class="game-flagship">
+        <div class="game-flagship-bg"><img id="flagship-thumb-img" src="https://img.youtube.com/vi/jbaT0JWABKA/maxresdefault.jpg" alt="Midwest 90: Rapid City"></div>
+        <div class="game-flagship-overlay"></div>
+        <div class="game-flagship-top"><span class="game-flagship-badge">Flagship IP</span></div>
+        <div class="game-flagship-content">
+          <div class="game-platform">PC · Steam · Itch.io · In Development</div>
+          <h3><em id="flagship-title-em">Midwest 90:</em><br><span id="flagship-title">Rapid City</span></h3>
+          <p class="game-flagship-desc" id="flagship-desc">A tycoon survival simulator set in a 1990s American midwest town. Free alpha available now.</p>
+          <a id="flagship-cta" href="https://store.steampowered.com" target="_blank" class="game-flagship-cta">Play Free →</a>
         </div>
-        <div class="port-body"><div class="port-client" style="color:var(--red)">Hidden Chest IP</div><div class="port-title">Midwest 90: Rapid City</div><div class="port-year">In Development · Early Access on Steam</div></div>
+      </div>
+
+      <!-- AirAsia -->
+      <div class="game-card" style="background:#0f0a0a;">
+        <svg class="game-card-icon" viewBox="0 0 30 30" fill="none">
+          <path d="M15 3L27 9V21L15 27L3 21V9L15 3Z" stroke="#E63228" stroke-width="1.5"/>
+          <path d="M15 9L21 12V18L15 21L9 18V12L15 9Z" stroke="#E63228" stroke-width="1" opacity=".45"/>
+        </svg>
+        <div class="game-card-name-big">AirAsia</div>
+        <div class="game-card-sub">Brand Gamification</div>
+        <div class="game-card-bottom">
+          <div class="game-card-tags"><span class="game-card-tag">Enterprise</span><span class="game-card-tag">Brand</span></div>
+          <div class="game-card-title">AirAsia Gamification</div>
+        </div>
+      </div>
+
+      <!-- Khazanah -->
+      <div class="game-card" style="background:#070d14;">
+        <svg class="game-card-icon" viewBox="0 0 30 30" fill="none">
+          <rect x="7" y="13" width="16" height="12" rx="1" stroke="#4a7ab5" stroke-width="1.5"/>
+          <path d="M10 13V10a5 5 0 0110 0v3" stroke="#4a7ab5" stroke-width="1.5" stroke-linecap="round"/>
+          <circle cx="15" cy="19" r="1.5" fill="#4a7ab5" opacity=".6"/>
+        </svg>
+        <div class="game-card-name-big" style="font-size:16px;margin-top:12px">Khazanah Nasional</div>
+        <div class="game-card-sub">Interactive Installation</div>
+        <div class="game-card-bottom">
+          <div class="game-card-tags"><span class="game-card-tag">Enterprise</span></div>
+          <div class="game-card-title">Khazanah Installation</div>
+        </div>
+      </div>
+
+      <!-- Mobile Title -->
+      <div class="game-card" style="background:#0c0c0c;">
+        <svg class="game-card-icon" viewBox="0 0 30 30" fill="none">
+          <rect x="9" y="4" width="12" height="22" rx="2" stroke="#888" stroke-width="1.5"/>
+          <rect x="11" y="6" width="8" height="14" fill="rgba(255,255,255,.04)" rx="1"/>
+          <circle cx="15" cy="23" r="1" fill="#666"/>
+        </svg>
+        <div class="game-card-name-big" style="font-size:16px;margin-top:12px">Mobile Title</div>
+        <div class="game-card-sub">iOS · Android</div>
+        <div class="game-card-bottom">
+          <div class="game-card-tags"><span class="game-card-tag">Mobile</span><span class="game-card-tag">Client</span></div>
+          <div class="game-card-title">Client Mobile Title</div>
+        </div>
+      </div>
+
+      <!-- AR/VR -->
+      <div class="game-card" style="background:#0c0a14;">
+        <svg class="game-card-icon" viewBox="0 0 30 30" fill="none">
+          <circle cx="15" cy="15" r="11" stroke="#7a5fc0" stroke-width="1.5"/>
+          <ellipse cx="15" cy="15" rx="5" ry="11" stroke="#7a5fc0" stroke-width="1" opacity=".45"/>
+          <line x1="4" y1="15" x2="26" y2="15" stroke="#7a5fc0" stroke-width="1" opacity=".45"/>
+        </svg>
+        <div class="game-card-name-big" style="font-size:16px;margin-top:12px">AR/VR Experience</div>
+        <div class="game-card-sub">Immersive · Bespoke</div>
+        <div class="game-card-bottom">
+          <div class="game-card-tags"><span class="game-card-tag">AR/VR</span></div>
+          <div class="game-card-title">AR/VR Installation</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 03 TRUSTED BY -->
+  <div class="section" id="collaborators">
+    <div class="partners-header">
+      <div>
+        <div class="sec-eyebrow"><div class="sec-line"></div><span class="sec-tag">03 / Collaborators</span></div>
+        <h2 class="sec-h2">Trusted By</h2>
+        <p class="partners-sub">We've partnered with some of Malaysia's most recognisable brands and institutions. If you want to engage your audience through games and interactive experiences, let's talk.</p>
+      </div>
+      <a href="#contact" class="partners-cta">Work With Us →</a>
+    </div>
+    <div class="partners-grid">
+      <div class="partner-box"><span class="partner-name">AirAsia</span></div>
+      <div class="partner-box"><span class="partner-name">Khazanah</span></div>
+      <div class="partner-box"><span class="partner-name">MDEC</span></div>
+      <div class="partner-box"><span class="partner-name">Partner 4</span></div>
+      <div class="partner-box"><span class="partner-name">Partner 5</span></div>
+    </div>
+  </div>
+
+  <!-- 04 PRESS -->
+  <div class="section" id="press">
+    <div class="press-header">
+      <div>
+        <div class="sec-eyebrow"><div class="sec-line"></div><span class="sec-tag">04 / Press</span></div>
+        <h2 class="sec-h2">As Seen In</h2>
+      </div>
+      <a href="#" class="press-kit-link">Press kit →</a>
+    </div>
+    <div class="press-grid">
+      <div class="press-card">
+        <div class="press-outlet">The Star</div>
+        <div class="press-quote">"All Games and All Play"</div>
+        <div class="press-year">2023</div>
+      </div>
+      <div class="press-card">
+        <div class="press-outlet">Vulcan Post</div>
+        <div class="press-quote">"Hidden Chest Studios building Malaysia's gaming future"</div>
+        <div class="press-year">2022</div>
+      </div>
+      <div class="press-card">
+        <div class="press-outlet">Malay Mail</div>
+        <div class="press-quote">"Rise of Malaysian game developers"</div>
+        <div class="press-year">2023</div>
+      </div>
+      <div class="press-card">
+        <div class="press-outlet">DNA</div>
+        <div class="press-quote">Digital News Asia feature on local indie studios</div>
+        <div class="press-year">2022</div>
+      </div>
+      <div class="press-card">
+        <div class="press-outlet">BFM 89.9</div>
+        <div class="press-quote">Radio segment on Malaysia's creative tech industry</div>
+        <div class="press-year">2023</div>
       </div>
     </div>
   </div>
 
-  <!-- 04 FLAGSHIP -->
+  <!-- 05 SERVICES -->
+  <div class="section" id="services">
+    <div class="sec-eyebrow"><div class="sec-line"></div><span class="sec-tag">05 / Services</span></div>
+    <h2 class="sec-h2">What We Build</h2>
+    <div class="services-grid">
+      <div class="svc-card">
+        <div>
+          <div class="svc-num">01 · Full Service</div>
+          <div class="svc-title">Game Development</div>
+          <p class="svc-desc">Full-cycle PC, mobile and console development — concept, design, build, and launch. We own the whole pipeline.</p>
+        </div>
+        <div class="svc-tags"><span class="svc-tag">PC · Steam</span><span class="svc-tag">Mobile</span></div>
+      </div>
+      <div class="svc-card">
+        <div>
+          <div class="svc-num">02 · Brand &amp; Enterprise</div>
+          <div class="svc-title">Interactive Experiences</div>
+          <p class="svc-desc">Gamified brand activations, AR/VR installations and custom apps that connect your audience on an emotional level.</p>
+        </div>
+        <div class="svc-tags"><span class="svc-tag">AR / VR</span><span class="svc-tag">Brand Events</span></div>
+      </div>
+      <div class="svc-card">
+        <div>
+          <div class="svc-num">03 · Dev Support</div>
+          <div class="svc-title">Custom App Development</div>
+          <p class="svc-desc">Game-grade technology applied to software products. iOS, Android and web apps — delivered end-to-end.</p>
+        </div>
+        <div class="svc-tags"><span class="svc-tag">iOS / Android</span><span class="svc-tag">Web</span></div>
+      </div>
+    </div>
+    <div style="text-align:right;margin-top:12px"><a href="#" style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#444;text-decoration:none;">All services →</a></div>
+  </div>
+
+  <!-- 06 FLAGSHIP -->
   <div class="flagship" id="flagship">
     <div class="flagship-bg"><img id="flagship-bg-img" src="https://img.youtube.com/vi/jbaT0JWABKA/maxresdefault.jpg" alt="Midwest 90: Rapid City"></div>
     <div class="flagship-overlay"></div>
     <div class="flagship-inner">
-      <div class="sec-eyebrow" style="margin-bottom:20px"><div class="sec-line"></div><span class="sec-tag">04 / Flagship</span></div>
+      <div class="sec-eyebrow" style="margin-bottom:20px"><div class="sec-line"></div><span class="sec-tag">06 / Flagship</span></div>
       <div class="flagship-subtitle">Flagship IP · In Development</div>
       <h2><em id="flagship-title-em">Midwest 90:</em><br><span id="flagship-title">Rapid City</span></h2>
       <p class="flagship-desc" id="flagship-desc">Tycoon survival simulator. Build a city in the American Midwest during the 1990s — manage resources, survive harsh winters, and grow your settlement into a thriving community. Free alpha available on Steam.</p>
@@ -275,9 +479,9 @@
     </div>
   </div>
 
-  <!-- 06 REACH OUT -->
+  <!-- 07 REACH OUT -->
   <div class="contact" id="contact">
-    <div class="sec-eyebrow"><div class="sec-line"></div><span class="sec-tag">06 / Reach Out</span></div>
+    <div class="sec-eyebrow"><div class="sec-line"></div><span class="sec-tag">07 / Reach Out</span></div>
     <div class="contact-grid">
       <div>
         <h2>Let's build <em>something great.</em></h2>
