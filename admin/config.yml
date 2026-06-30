@@ -1,0 +1,68 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: images
+public_folder: /images
+
+collections:
+  - name: settings
+    label: Site Content
+    files:
+      - name: content
+        label: All Content
+        file: content.json
+        format: json
+        fields:
+          - label: "Hero Video ID (YouTube)"
+            name: heroVideoId
+            widget: string
+            hint: "The YouTube video ID e.g. jbaT0JWABKA"
+          - label: "Hero Tagline"
+            name: heroTagline
+            widget: string
+          - label: "Hero Description"
+            name: heroDescription
+            widget: text
+          - label: "About Paragraph 1"
+            name: aboutP1
+            widget: text
+          - label: "About Paragraph 2"
+            name: aboutP2
+            widget: text
+          - label: "Flagship Image (optional override)"
+            name: flagshipImage
+            widget: image
+            required: false
+            hint: "Leave blank to auto-use the YouTube thumbnail"
+          - label: "Flagship Title Line 1"
+            name: flagshipTitleEm
+            widget: string
+          - label: "Flagship Title Line 2"
+            name: flagshipTitle
+            widget: string
+          - label: "Flagship Description"
+            name: flagshipDescription
+            widget: text
+          - label: "Steam Link"
+            name: steamLink
+            widget: string
+          - label: "Contact Email"
+            name: contactEmail
+            widget: string
+          - label: "Contact Description"
+            name: contactDescription
+            widget: text
+          - label: "Discord Invite URL"
+            name: discordInvite
+            widget: string
+          - label: "Discord Server ID"
+            name: discordServerId
+            widget: string
+            hint: "Find in Server Settings > Widget"
+          - label: "YouTube Channel Link"
+            name: youtubeLink
+            widget: string
+          - label: "LinkedIn Link"
+            name: linkedinLink
+            widget: string
