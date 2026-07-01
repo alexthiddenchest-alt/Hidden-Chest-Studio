@@ -5,6 +5,14 @@
   "heroHeadlineEm": "idea.",
   "heroHeadline2": "Built and shipped.",
   "heroDescription": "We help brands, enterprises, and game studios build custom games and interactive apps — from branded minigames to full mobile titles — delivered by a studio trusted by AirAsia and Khazanah Nasional.",
+  "heroStat1Label": "Founded",
+  "heroStat1Val": "2020",
+  "heroStat2Label": "Based In",
+  "heroStat2Val": "Kuala Lumpur",
+  "heroStat3Label": "Engine",
+  "heroStat3Val": "Unity · Godot",
+  "heroStat4Label": "Flagship IP",
+  "heroStat4Val": "Midwest 90: Rapid City",
 
   "aboutHeading1": "A studio built",
   "aboutHeading2": "on craft, community,",
@@ -18,10 +26,8 @@
   "aboutStat3Num": "3",
   "aboutStat3Label": "Co-Founders",
 
-  "trustedByDesc": "We've partnered with some of Malaysia's most recognisable brands and institutions. If you want to engage your audience through games and interactive experiences, let's talk.",
-
-  "press1Outlet": "The Star",
-  "press1Quote": "\"All Games and All Play\"",
-  "press1Year": "2023",
-  "press2Outlet": "Vulcan Post",
-  "press2Quote": "\"Hidden Chest Studios building Malaysia's gaming f
+  "gamesHeading": "What We've",
+  "gamesHeadingEm": "Built.",
+  "trustedByHeading": "Trusted By",
+  "pressHeading": "As Seen In",
+  

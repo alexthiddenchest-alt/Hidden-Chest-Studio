@@ -45,26 +45,30 @@ collections:
             widget: string
             hint: "The ID after watch?v= in the YouTube URL, e.g. jbaT0JWABKA"
 
-          # ─── WHO WE ARE ────────────────────────────────────────────────────
-          - label: "About — Heading line 1"
-            name: aboutHeading1
+          - label: "Hero — Stat 1 Label (e.g. Founded)"
+            name: heroStat1Label
             widget: string
-            hint: "e.g. A studio built"
 
-          - label: "About — Heading line 2"
-            name: aboutHeading2
+          - label: "Hero — Stat 1 Value (e.g. 2020)"
+            name: heroStat1Val
             widget: string
-            hint: "e.g. on craft, community,"
 
-          - label: "About — Heading italic line (red)"
-            name: aboutHeadingEm
+          - label: "Hero — Stat 2 Label (e.g. Based In)"
+            name: heroStat2Label
             widget: string
-            hint: "e.g. and creativity."
 
-          - label: "About — Paragraph 1"
-            name: aboutP1
-            widget: text
+          - label: "Hero — Stat 2 Value (e.g. Kuala Lumpur)"
+            name: heroStat2Val
+            widget: string
 
-          - label: "About — Paragraph 2"
-            name: aboutP2
-         
+          - label: "Hero — Stat 3 Label (e.g. Engine)"
+            name: heroStat3Label
+            widget: string
+
+          - label: "Hero — Stat 3 Value (e.g. Unity · Godot)"
+            name: heroStat3Val
+            widget: string
+
+          - label: "Hero — Stat 4 Label (e.g. Flagship IP)"
+            name: heroStat4Label
+        
