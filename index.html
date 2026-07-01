@@ -96,10 +96,13 @@
     .partners-cta { display:inline-flex; padding:10px 22px; border:1px solid rgba(255,255,255,.15); color:var(--cream); font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.1em; text-transform:uppercase; text-decoration:none; }
     .partners-cta:hover { background:rgba(255,255,255,.05); }
     .partners-sub { font-size:14px; color:#555; line-height:1.7; max-width:520px; margin-top:12px; }
-    .partners-grid { display:grid; grid-template-columns:repeat(5,1fr); border:1px solid rgba(255,255,255,.06); }
-    .partner-box { padding:28px 20px; border-right:1px solid rgba(255,255,255,.06); display:flex; align-items:center; justify-content:center; min-height:90px; }
+    .partners-grid { display:grid; grid-template-columns:repeat(6,1fr); border:1px solid rgba(255,255,255,.06); }
+    .partner-box { padding:28px 24px; border-right:1px solid rgba(255,255,255,.06); display:flex; align-items:center; justify-content:center; min-height:100px; }
     .partner-box:last-child { border-right:none; }
     .partner-name { font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:#444; text-align:center; }
+    .partner-logo { max-height:52px; max-width:130px; width:auto; object-fit:contain; opacity:.7; transition:opacity .25s; filter:none; }
+    .partner-box:hover .partner-logo { opacity:1; }
+    .partner-logo--white { filter:brightness(0) invert(1); }
 
     /* PRESS */
     .press-header { display:flex; align-items:flex-end; justify-content:space-between; margin-bottom:32px; }
@@ -194,6 +197,7 @@
       .services-grid { grid-template-columns:1fr 1fr; }
       .about-grid,.contact-grid,.community-grid { gap:48px; }
       .partners-grid { grid-template-columns:repeat(3,1fr); }
+      .partners-grid .partner-box:nth-child(3) { border-right:none; }
       .press-grid { grid-template-columns:repeat(3,1fr); }
     }
     @media (max-width:768px) {
@@ -387,11 +391,12 @@
       <a href="#contact" class="partners-cta">Work With Us →</a>
     </div>
     <div class="partners-grid">
-      <div class="partner-box"><span class="partner-name">AirAsia</span></div>
-      <div class="partner-box"><span class="partner-name">Khazanah</span></div>
-      <div class="partner-box"><span class="partner-name">MDEC</span></div>
-      <div class="partner-box"><span class="partner-name">Partner 4</span></div>
-      <div class="partner-box"><span class="partner-name">Partner 5</span></div>
+      <div class="partner-box"><img src="images/airasia.webp" alt="AirAsia" class="partner-logo"></div>
+      <div class="partner-box"><img src="images/khazanah.png" alt="Khazanah Nasional" class="partner-logo partner-logo--white"></div>
+      <div class="partner-box"><img src="images/mdec.png" alt="MDEC" class="partner-logo"></div>
+      <div class="partner-box"><img src="images/inqubi.png" alt="inQubi" class="partner-logo"></div>
+      <div class="partner-box"><img src="images/project-oasis-nobg.png" alt="Project Oasis" class="partner-logo"></div>
+      <div class="partner-box"><img src="images/tycoon-zone-nobg.png" alt="Tycoon Zone" class="partner-logo"></div>
     </div>
   </div>
 
@@ -597,4 +602,3 @@ fetch('/content.json')
 </script>
 </body>
 </html>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
