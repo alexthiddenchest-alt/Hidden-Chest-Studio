@@ -47,9 +47,9 @@
     .eyebrow-text { font-family:'JetBrains Mono',monospace; font-size:clamp(10px,.8vw,13px); letter-spacing:.18em; text-transform:uppercase; color:var(--red); }
     .hero h1 { margin:0 0 28px; font-family:'Barlow',sans-serif; font-weight:900; font-size:clamp(56px,7.5vw,140px); line-height:.92; letter-spacing:-.02em; color:var(--cream); }
     .hero h1 em { font-family:'Playfair Display',serif; font-style:italic; color:var(--red); }
-    .hero-desc { margin:0 0 64px; font-size:clamp(16px,1.4vw,22px); font-weight:400; color:rgba(240,235,227,.82); line-height:1.65; max-width:clamp(500px,45vw,800px); }
+    .hero-desc { margin:0 0 64px; font-size:clamp(18px,1.6vw,26px); font-weight:400; color:rgba(240,235,227,.92); line-height:1.7; max-width:clamp(500px,45vw,800px); }
     .hero-stats { border-top:1px solid rgba(255,255,255,.07); padding-top:26px; display:flex; align-items:flex-start; gap:48px; flex-wrap:wrap; }
-    .stat-label { font-family:'JetBrains Mono',monospace; font-size:clamp(10px,.75vw,13px); letter-spacing:.12em; text-transform:uppercase; color:#999; margin-bottom:7px; }
+    .stat-label { font-family:'JetBrains Mono',monospace; font-size:clamp(11px,.85vw,14px); letter-spacing:.12em; text-transform:uppercase; color:#bbb; margin-bottom:7px; }
     .stat-val { font-family:'Barlow',sans-serif; font-size:clamp(18px,1.6vw,26px); font-weight:800; color:var(--cream); }
 
     /* SECTIONS */
@@ -67,11 +67,11 @@
     .about-left h2 { font-family:'Barlow',sans-serif; font-weight:900; font-size:clamp(36px,3.8vw,54px); letter-spacing:-.025em; color:var(--cream); line-height:1.0; margin:0; }
     .about-left h2 em { font-family:'Playfair Display',serif; font-style:italic; color:var(--red); }
     .about-right { padding-top:4px; }
-    .about-p { font-size:clamp(15px,1.2vw,18px); color:rgba(240,235,227,.78); line-height:1.8; margin:0 0 20px; }
-    .about-p em { font-style:italic; color:rgba(240,235,227,.9); }
+    .about-p { font-size:clamp(17px,1.5vw,22px); color:rgba(240,235,227,.88); line-height:1.8; margin:0 0 24px; }
+    .about-p em { font-style:italic; color:rgba(240,235,227,.95); }
     .about-stats { display:flex; gap:64px; margin-top:40px; padding-top:32px; border-top:1px solid var(--border); }
     .about-stat-num { font-family:'Barlow',sans-serif; font-size:clamp(38px,3.5vw,64px); font-weight:900; color:var(--cream); letter-spacing:-.02em; margin-bottom:6px; }
-    .about-stat-label { font-family:'JetBrains Mono',monospace; font-size:clamp(10px,.75vw,13px); letter-spacing:.14em; text-transform:uppercase; color:#999; }
+    .about-stat-label { font-family:'JetBrains Mono',monospace; font-size:clamp(12px,.9vw,15px); letter-spacing:.14em; text-transform:uppercase; color:#bbb; }
     /* legacy stat-block kept for compat */
     .stat-block { padding:18px 0; border-bottom:1px solid var(--border); display:flex; align-items:flex-end; justify-content:space-between; }
     .stat-block:last-child { border-bottom:none; }
@@ -85,7 +85,7 @@
     .svc-card::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:var(--red); }
     .svc-num { font-family:'JetBrains Mono',monospace; font-size:clamp(10px,.8vw,13px); letter-spacing:.14em; text-transform:uppercase; color:var(--red); margin-bottom:14px; }
     .svc-title { font-family:'Barlow',sans-serif; font-size:clamp(20px,1.8vw,28px); font-weight:900; color:var(--cream); margin:0 0 14px; letter-spacing:-.01em; }
-    .svc-desc { font-size:clamp(14px,1.1vw,17px); color:#aaa; line-height:1.75; margin-bottom:28px; }
+    .svc-desc { font-size:clamp(16px,1.35vw,21px); color:#d0cbc3; line-height:1.75; margin-bottom:28px; }
     .svc-tags { display:flex; gap:8px; flex-wrap:wrap; }
     .svc-tag { display:inline-block; font-family:'JetBrains Mono',monospace; font-size:clamp(9px,.75vw,12px); letter-spacing:.08em; text-transform:uppercase; color:#aaa; border:1px solid rgba(255,255,255,.2); padding:5px 12px; }
 
@@ -93,7 +93,7 @@
     .partners-header { display:flex; align-items:flex-end; justify-content:space-between; margin-bottom:36px; }
     .partners-cta { display:inline-flex; padding:10px 22px; border:1px solid rgba(255,255,255,.15); color:var(--cream); font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.1em; text-transform:uppercase; text-decoration:none; }
     .partners-cta:hover { background:rgba(255,255,255,.05); }
-    .partners-sub { font-size:clamp(14px,1.1vw,17px); color:#aaa; line-height:1.7; max-width:560px; margin-top:12px; }
+    .partners-sub { font-size:clamp(16px,1.35vw,21px); color:#d0cbc3; line-height:1.75; max-width:600px; margin-top:12px; }
     .partners-grid { display:grid; grid-template-columns:repeat(3,1fr); border:1px solid rgba(255,255,255,.08); }
     .partner-box { padding:clamp(24px,2.5vw,48px); border-right:1px solid rgba(255,255,255,.08); border-bottom:1px solid rgba(255,255,255,.08); display:flex; align-items:center; justify-content:center; height:clamp(200px,18vw,320px); }
     .partner-box:nth-child(3n) { border-right:none; }
@@ -111,12 +111,12 @@
     .press-card { padding:clamp(20px,2vw,36px) clamp(16px,1.8vw,28px); border-right:1px solid rgba(255,255,255,.06); display:flex; flex-direction:column; gap:10px; }
     .press-card:last-child { border-right:none; }
     .press-outlet { font-family:'Barlow',sans-serif; font-size:clamp(15px,1.3vw,20px); font-weight:800; color:var(--cream); }
-    .press-quote { font-family:'Barlow',sans-serif; font-size:clamp(12px,1vw,15px); color:#aaa; line-height:1.6; font-style:italic; flex:1; }
-    .press-year { font-family:'JetBrains Mono',monospace; font-size:clamp(9px,.7vw,12px); letter-spacing:.1em; color:#777; margin-top:auto; }
+    .press-quote { font-family:'Barlow',sans-serif; font-size:clamp(14px,1.15vw,18px); color:#c8c4bc; line-height:1.65; font-style:italic; flex:1; }
+    .press-year { font-family:'JetBrains Mono',monospace; font-size:clamp(11px,.8vw,13px); letter-spacing:.1em; color:#999; margin-top:auto; }
 
     /* GAMES BENTO */
     .games-header { display:flex; align-items:flex-end; justify-content:space-between; margin-bottom:24px; }
-    .games-all { font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:#444; text-decoration:none; }
+    .games-all { font-family:'JetBrains Mono',monospace; font-size:clamp(11px,.85vw,14px); letter-spacing:.12em; text-transform:uppercase; color:#999; text-decoration:none; }
     .games-all:hover { color:var(--cream); }
     .games-bento { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
     /* Flagship */
@@ -127,17 +127,17 @@
     .game-flagship-top { position:relative; z-index:3; padding:24px 24px 0; }
     .game-flagship-badge { display:inline-block; padding:4px 10px; background:var(--red); font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:.12em; text-transform:uppercase; color:#fff; }
     .game-flagship-content { position:relative; z-index:3; padding:24px; margin-top:auto; }
-    .game-platform { font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:.1em; text-transform:uppercase; color:rgba(255,255,255,.35); margin-bottom:10px; }
+    .game-platform { font-family:'JetBrains Mono',monospace; font-size:clamp(11px,.85vw,13px); letter-spacing:.1em; text-transform:uppercase; color:rgba(255,255,255,.65); margin-bottom:10px; }
     .game-flagship-content h3 { margin:0 0 10px; font-family:'Barlow',sans-serif; font-weight:900; font-size:clamp(26px,2.4vw,36px); letter-spacing:-.02em; color:var(--cream); line-height:.95; }
     .game-flagship-content h3 em { font-family:'Playfair Display',serif; font-style:italic; color:var(--red); }
-    .game-flagship-desc { font-size:clamp(14px,1.1vw,17px); color:#ccc; line-height:1.65; margin:0 0 20px; }
+    .game-flagship-desc { font-size:clamp(16px,1.35vw,20px); color:#d5d0c8; line-height:1.7; margin:0 0 20px; }
     .game-flagship-cta { display:inline-flex; padding:10px 22px; background:var(--red); color:#fff; font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.1em; text-transform:uppercase; text-decoration:none; }
     .game-flagship-cta:hover { background:#c8241b; }
     /* Small cards */
     .game-card { background:#111; border:1px solid var(--border); padding:24px; display:flex; flex-direction:column; min-height:180px; }
     .game-card-icon { width:30px; height:30px; }
     .game-card-name-big { font-family:'Barlow',sans-serif; font-size:22px; font-weight:900; color:var(--cream); letter-spacing:-.02em; margin:16px 0 2px; }
-    .game-card-sub { font-family:'JetBrains Mono',monospace; font-size:clamp(9px,.75vw,12px); letter-spacing:.1em; text-transform:uppercase; color:#999; }
+    .game-card-sub { font-family:'JetBrains Mono',monospace; font-size:clamp(11px,.85vw,13px); letter-spacing:.1em; text-transform:uppercase; color:#bbb; }
     .game-card-bottom { margin-top:auto; padding-top:20px; }
     .game-card-tags { display:flex; gap:6px; flex-wrap:wrap; margin-bottom:8px; }
     .game-card-tag { font-family:'JetBrains Mono',monospace; font-size:clamp(9px,.75vw,12px); letter-spacing:.1em; text-transform:uppercase; color:#999; border:1px solid rgba(255,255,255,.15); padding:3px 8px; }
@@ -149,10 +149,10 @@
     .flagship-bg img { width:100%; height:100%; object-fit:cover; opacity:.55; }
     .flagship-overlay { position:absolute; inset:0; background:rgba(8,8,8,.72); z-index:1; }
     .flagship-inner { position:relative; z-index:2; max-width:600px; }
-    .flagship-subtitle { font-family:'JetBrains Mono',monospace; font-size:9.5px; letter-spacing:.12em; text-transform:uppercase; color:#fff; margin-bottom:16px; opacity:.6; }
+    .flagship-subtitle { font-family:'JetBrains Mono',monospace; font-size:clamp(11px,.85vw,14px); letter-spacing:.12em; text-transform:uppercase; color:#fff; margin-bottom:16px; opacity:.75; }
     .flagship h2 { margin:0 0 20px; font-family:'Barlow',sans-serif; font-weight:900; font-size:clamp(36px,3.6vw,52px); letter-spacing:-.025em; color:var(--cream); line-height:.95; }
     .flagship h2 em { font-family:'Playfair Display',serif; font-style:italic; color:var(--red); }
-    .flagship-desc { font-size:clamp(15px,1.3vw,20px); color:#bbb; line-height:1.75; margin:0 0 32px; }
+    .flagship-desc { font-size:clamp(17px,1.5vw,23px); color:#d5d0c8; line-height:1.75; margin:0 0 32px; }
     .flagship-cta { display:inline-flex; padding:14px 28px; background:var(--red); color:#fff; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.1em; text-transform:uppercase; text-decoration:none; }
     .flagship-cta:hover { background:#c8241b; }
 
@@ -161,8 +161,8 @@
     .contact-grid { display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:start; margin-top:32px; }
     .contact h2 { margin:0 0 20px; font-family:'Barlow',sans-serif; font-weight:900; font-size:clamp(32px,3.6vw,52px); letter-spacing:-.025em; color:var(--cream); line-height:.95; }
     .contact h2 em { font-family:'Playfair Display',serif; font-style:italic; color:var(--red); }
-    .contact-desc { font-size:clamp(15px,1.3vw,20px); color:#bbb; line-height:1.75; margin:0 0 36px; }
-    .contact-email { display:block; font-family:'JetBrains Mono',monospace; font-size:14px; letter-spacing:.05em; color:var(--cream); text-decoration:none; border-bottom:1px solid rgba(255,255,255,.12); padding-bottom:16px; margin-bottom:16px; }
+    .contact-desc { font-size:clamp(17px,1.5vw,23px); color:#d5d0c8; line-height:1.75; margin:0 0 36px; }
+    .contact-email { display:block; font-family:'JetBrains Mono',monospace; font-size:clamp(14px,1.2vw,18px); letter-spacing:.05em; color:var(--cream); text-decoration:none; border-bottom:1px solid rgba(255,255,255,.12); padding-bottom:16px; margin-bottom:16px; }
     .contact-email:hover { color:var(--red); }
     .contact-placeholder { background:#111; border:1px solid var(--border); padding:40px; display:flex; align-items:center; justify-content:center; text-align:center; }
     .contact-placeholder p { font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:#333; margin-bottom:16px; }
@@ -172,7 +172,7 @@
     .community-grid { display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:start; margin-top:32px; }
     .community h2 { margin:0 0 16px; font-family:'Barlow',sans-serif; font-weight:900; font-size:clamp(32px,3.6vw,52px); letter-spacing:-.025em; color:var(--cream); line-height:.95; }
     .community h2 em { font-family:'Playfair Display',serif; font-style:italic; color:var(--red); }
-    .community-p { font-size:clamp(15px,1.3vw,20px); color:#bbb; line-height:1.75; margin:0 0 14px; }
+    .community-p { font-size:clamp(17px,1.5vw,23px); color:#d5d0c8; line-height:1.75; margin:0 0 16px; }
     .discord-btn { display:inline-flex; align-items:center; gap:10px; padding:14px 28px; background:#5865F2; color:#fff; font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:.1em; text-transform:uppercase; text-decoration:none; margin-top:28px; }
     .discord-btn:hover { background:#4752c4; }
     .discord-card { background:#1a1a2e; border:1px solid rgba(88,101,242,.25); overflow:hidden; display:flex; flex-direction:column; }
@@ -558,5 +558,4 @@
     </div>
     <div class="footer-copy">© 2024 Hidden Chest Studios (MY)</div>
     <div class="footer-links">
-      <a id="footer-youtube" href="#" class="footer-link">YouTube</a>
-      <a id="footer-discord" href="https://discord.gg/" 
+      <a id="footer-yout
