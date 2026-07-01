@@ -167,18 +167,8 @@
 </head>
 <body>
 
-<!-- ── LOGIN ──────────────────────────────────────────────────────────────── -->
-<div id="view-login">
-  <div>
-    <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--red);margin-bottom:12px;">Hidden Chest Studio</div>
-    <h1>Site Editor</h1>
-    <p style="margin-top:8px;">Sign in to edit your website content</p>
-  </div>
-  <button class="login-btn" onclick="netlifyIdentity.open()">
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
-    Sign In
-  </button>
-</div>
+<!-- login view hidden — editor loads immediately, auth only needed to save -->
+<div id="view-login" style="display:none"></div>
 
 <!-- ── LOADING ─────────────────────────────────────────────────────────────── -->
 <div id="view-loading">
@@ -196,8 +186,9 @@
     <a href="https://sparkly-buttercream-86e597.netlify.app" target="_blank" class="hdr-btn hdr-btn-view">
       View Live Site ↗
     </a>
-    <button class="hdr-btn hdr-btn-save" id="btn-save" onclick="saveContent()">Save Changes</button>
-    <button class="hdr-btn hdr-btn-logout" onclick="netlifyIdentity.logout()">Sign out</button>
+    <button class="hdr-btn hdr-btn-save" id="btn-save" onclick="saveContent()" style="display:none">Save Changes</button>
+    <button class="hdr-btn" id="hdr-login-btn" onclick="netlifyIdentity.open()" style="background:#333;color:var(--cream);">Sign in to Save</button>
+    <button class="hdr-btn hdr-btn-logout" onclick="netlifyIdentity.logout()" style="display:none">Sign out</button>
   </header>
 
   <div class="editor-body">
@@ -360,58 +351,67 @@ var currentSection = 'hero';
 
 // ── AUTH ─────────────────────────────────────────────────────────────────────
 netlifyIdentity.on('init', function(user) {
-  if (user) { token = user.token.access_token; startEditor(); }
+  if (user) { token = ''; refreshToken(); }
 });
 netlifyIdentity.on('login', function(user) {
   netlifyIdentity.close();
-  token = user.token.access_token;
-  startEditor();
+  refreshToken();
+  updateAuthUI();
 });
 netlifyIdentity.on('logout', function() {
-  show('view-login');
+  token = '';
+  updateAuthUI();
 });
+
+function refreshToken() {
+  var user = netlifyIdentity.currentUser();
+  if (!user) return;
+  user.jwt().then(function(t) { token = t; updateAuthUI(); }).catch(function() {});
+}
+
+function updateAuthUI() {
+  var loggedIn = !!netlifyIdentity.currentUser();
+  var saveBtn = document.getElementById('btn-save');
+  var logoutBtn = document.querySelector('.hdr-btn-logout');
+  if (saveBtn)    saveBtn.style.display    = loggedIn ? '' : 'none';
+  if (logoutBtn)  logoutBtn.style.display  = loggedIn ? '' : 'none';
+  var loginBtn = document.getElementById('hdr-login-btn');
+  if (loginBtn)   loginBtn.style.display   = loggedIn ? 'none' : '';
+}
 
 // ── VIEWS ────────────────────────────────────────────────────────────────────
 function show(id) {
   ['view-login','view-loading','view-editor'].forEach(function(v) {
-    document.getElementById(v).style.display = 'none';
+    var el = document.getElementById(v);
+    el.style.display = 'none';
   });
-  document.getElementById(id).style.display = id === 'view-editor' ? 'flex' : 'flex';
-  if (id === 'view-editor') document.getElementById(id).style.flexDirection = 'column';
+  var target = document.getElementById(id);
+  target.style.display = 'flex';
+  if (id === 'view-editor') target.style.flexDirection = 'column';
 }
 
-// ── START EDITOR ─────────────────────────────────────────────────────────────
+// ── START EDITOR — reads public content.json, no auth needed ─────────────────
 function startEditor() {
   show('view-loading');
-  // Refresh token if needed
-  var user = netlifyIdentity.currentUser();
-  user.jwt().then(function(t) {
-    token = t;
-    return fetch('/.netlify/git/github/contents/content.json', {
-      headers: { 'Authorization': 'Bearer ' + token }
-    });
-  }).then(function(r) { return r.json(); })
-    .then(function(data) {
-      fileSha  = data.sha;
-      content  = JSON.parse(decodeURIComponent(escape(atob(data.content.replace(/\n/g,'')))));
+  fetch('/content.json?nocache=' + Date.now())
+    .then(function(r) {
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      return r.json();
+    })
+    .then(function(c) {
+      content = c;
       buildEditor();
       show('view-editor');
+      updateAuthUI();
     })
     .catch(function(e) {
       console.error(e);
-      // Fallback: try fetching content.json directly
-      fetch('/content.json')
-        .then(function(r) { return r.json(); })
-        .then(function(c) {
-          content = c;
-          fileSha = '';
-          buildEditor();
-          show('view-editor');
-        })
-        .catch(function() {
-          alert('Could not load content. Check your Netlify Identity setup.');
-          show('view-login');
-        });
+      // Show editor with empty content so user can still see the interface
+      content = {};
+      buildEditor();
+      show('view-editor');
+      setStatus('Warning: could not load current content', 'error');
+      updateAuthUI();
     });
 }
 
@@ -515,12 +515,18 @@ function setStatus(msg, cls) {
 
 // ── SAVE ─────────────────────────────────────────────────────────────────────
 function saveContent() {
+  var user = netlifyIdentity.currentUser();
+  if (!user) {
+    netlifyIdentity.open();
+    return;
+  }
+
   var btn = document.getElementById('btn-save');
   btn.disabled = true;
   btn.textContent = 'Saving…';
   setStatus('Saving…', 'saving');
 
-  // Collect latest values from the DOM inputs/textareas
+  // Collect latest values from all visible inputs/textareas
   document.querySelectorAll('[data-key]').forEach(function(el) {
     content[el.dataset.key] = el.value;
   });
@@ -528,42 +534,41 @@ function saveContent() {
   var jsonStr = JSON.stringify(content, null, 2);
   var encoded = btoa(unescape(encodeURIComponent(jsonStr)));
 
-  var user = netlifyIdentity.currentUser();
+  // Refresh JWT then get current SHA then save
   user.jwt().then(function(t) {
     token = t;
-    var body = { message: 'Update site content', content: encoded };
-    if (fileSha) body.sha = fileSha;
+    // Always get fresh SHA before writing to avoid conflicts
     return fetch('/.netlify/git/github/contents/content.json', {
-      method: 'PUT',
-      headers: {
-        'Authorization': 'Bearer ' + token,
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(body)
+      headers: { 'Authorization': 'Bearer ' + token }
     });
   }).then(function(r) {
-    if (!r.ok) throw new Error('HTTP ' + r.status);
+    if (!r.ok) throw new Error('git-gateway ' + r.status + ' — Enable Git Gateway in Netlify → Identity → Services');
+    return r.json();
+  }).then(function(meta) {
+    fileSha = meta.sha;
+    return fetch('/.netlify/git/github/contents/content.json', {
+      method: 'PUT',
+      headers: { 'Authorization': 'Bearer ' + token, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ message: 'Update site content via admin', content: encoded, sha: fileSha })
+    });
+  }).then(function(r) {
+    if (!r.ok) throw new Error('Save failed HTTP ' + r.status);
     return r.json();
   }).then(function(data) {
     if (data.content) fileSha = data.content.sha;
     hasChanges = false;
     document.getElementById('unsaved-bar').classList.remove('visible');
-    setStatus('✓ Saved — deploying…', 'saved');
+    setStatus('✓ Saved — site deploying in ~30s', 'saved');
     btn.disabled = false;
     btn.textContent = 'Save Changes';
-    setTimeout(function() { setStatus(''); }, 4000);
+    setTimeout(function() { setStatus(''); }, 6000);
   }).catch(function(e) {
     console.error(e);
-    setStatus('Save failed — try again', 'error');
+    setStatus('❌ ' + (e.message || 'Save failed'), 'error');
     btn.disabled = false;
     btn.textContent = 'Save Changes';
   });
 }
 
 // Warn before closing with unsaved changes
-window.addEventListener('beforeunload', function(e) {
-  if (hasChanges) { e.preventDefault(); e.returnValue = ''; }
-});
-</script>
-</body>
-</html>
+window.addEventListener('beforeunload',
