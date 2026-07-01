@@ -9,566 +9,493 @@
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --bg:      #111;
-      --surface: #1a1a1a;
-      --border:  rgba(255,255,255,.08);
-      --red:     #E63228;
-      --cream:   #F0EBE3;
-      --muted:   #888;
-      --input:   #0f0f0f;
+      --bg:     #111;
+      --dark:   #0a0a0a;
+      --border: rgba(255,255,255,.08);
+      --red:    #E63228;
+      --cream:  #F0EBE3;
+      --muted:  #888;
+      --input:  #0f0f0f;
     }
-    html, body { height: 100%; font-family: 'Barlow', system-ui, sans-serif; background: var(--bg); color: var(--cream); }
+    html, body {
+      height: 100%; font-family: 'Barlow', system-ui, sans-serif;
+      background: var(--bg); color: var(--cream); overflow: hidden;
+    }
 
-    /* ── AUTH SCREEN ─────────────────────────────────────────────────────── */
-    #view-login {
-      display: flex; align-items: center; justify-content: center;
-      height: 100vh; flex-direction: column; gap: 24px; text-align: center;
-    }
-    #view-login h1 { font-size: 28px; font-weight: 900; letter-spacing: -.02em; }
-    #view-login p  { color: var(--muted); font-size: 14px; }
-    .login-btn {
-      display: inline-flex; align-items: center; gap: 10px;
-      padding: 14px 32px; background: var(--red); color: #fff;
-      font-family: 'JetBrains Mono', monospace; font-size: 12px;
-      letter-spacing: .12em; text-transform: uppercase; border: none; cursor: pointer;
-    }
-    .login-btn:hover { background: #c8241b; }
-
-    /* ── LOADING ─────────────────────────────────────────────────────────── */
-    #view-loading {
-      display: none; align-items: center; justify-content: center;
-      height: 100vh; flex-direction: column; gap: 16px;
-    }
-    .spinner {
-      width: 32px; height: 32px; border: 2px solid rgba(255,255,255,.1);
-      border-top-color: var(--red); border-radius: 50%;
-      animation: spin .7s linear infinite;
-    }
-    @keyframes spin { to { transform: rotate(360deg); } }
-
-    /* ── EDITOR LAYOUT ───────────────────────────────────────────────────── */
-    #view-editor { display: none; height: 100vh; flex-direction: column; }
+    /* ── LAYOUT ──────────────────────────────────────────────────────────── */
+    #app { display: flex; flex-direction: column; height: 100vh; }
 
     /* Header */
     .hdr {
-      display: flex; align-items: center; gap: 20px;
-      padding: 0 24px; height: 54px; background: #0a0a0a;
-      border-bottom: 1px solid var(--border); flex-shrink: 0; z-index: 10;
+      display: flex; align-items: center; gap: 16px;
+      padding: 0 20px; height: 52px; background: var(--dark);
+      border-bottom: 1px solid var(--border); flex-shrink: 0;
     }
     .hdr-logo {
       font-family: 'JetBrains Mono', monospace; font-size: 11px;
-      letter-spacing: .14em; text-transform: uppercase; color: var(--red); white-space: nowrap;
+      letter-spacing: .16em; text-transform: uppercase; color: var(--red);
+      white-space: nowrap; flex-shrink: 0;
     }
-    .hdr-sep { width: 1px; height: 20px; background: var(--border); }
-    .hdr-section { font-size: 13px; color: var(--muted); flex: 1; }
+    .hdr-sep { width: 1px; height: 18px; background: var(--border); flex-shrink: 0; }
+    .hdr-title { font-size: 13px; color: var(--muted); flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     .hdr-status {
       font-family: 'JetBrains Mono', monospace; font-size: 11px;
-      letter-spacing: .08em; color: var(--muted); white-space: nowrap;
+      letter-spacing: .06em; white-space: nowrap; flex-shrink: 0;
     }
-    .hdr-status.saved   { color: #4ade80; }
-    .hdr-status.saving  { color: #fbbf24; }
-    .hdr-status.error   { color: var(--red); }
-    .hdr-btn {
-      display: inline-flex; align-items: center; gap: 8px; padding: 8px 18px;
+    .hdr-status.ok  { color: #4ade80; }
+    .hdr-status.err { color: var(--red); }
+    .hdr-status.ing { color: #fbbf24; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px;
       font-family: 'JetBrains Mono', monospace; font-size: 11px;
-      letter-spacing: .1em; text-transform: uppercase; border: none; cursor: pointer; white-space: nowrap;
+      letter-spacing: .1em; text-transform: uppercase; border: none;
+      cursor: pointer; white-space: nowrap; flex-shrink: 0; text-decoration: none;
     }
-    .hdr-btn-save  { background: var(--red); color: #fff; }
-    .hdr-btn-save:hover { background: #c8241b; }
-    .hdr-btn-save:disabled { background: #444; cursor: not-allowed; }
-    .hdr-btn-view  { background: transparent; color: var(--muted); border: 1px solid var(--border); text-decoration: none; }
-    .hdr-btn-view:hover { color: var(--cream); border-color: rgba(255,255,255,.2); }
-    .hdr-btn-logout { background: transparent; color: #555; border: none; font-size: 10px; }
-    .hdr-btn-logout:hover { color: var(--muted); }
+    .btn-red   { background: var(--red); color: #fff; }
+    .btn-red:hover { background: #c8241b; }
+    .btn-red:disabled { background: #444; cursor: not-allowed; }
+    .btn-ghost { background: transparent; color: var(--muted); border: 1px solid var(--border); }
+    .btn-ghost:hover { color: var(--cream); }
+    .btn-dim   { background: transparent; color: #555; font-size: 10px; border: none; }
+    .btn-dim:hover { color: var(--muted); }
 
     /* Body split */
-    .editor-body { display: flex; flex: 1; overflow: hidden; }
+    .body { display: flex; flex: 1; overflow: hidden; }
 
     /* Sidebar */
     .sidebar {
-      width: 200px; flex-shrink: 0; background: #0a0a0a;
-      border-right: 1px solid var(--border); overflow-y: auto; padding: 12px 0;
+      width: 188px; flex-shrink: 0; background: var(--dark);
+      border-right: 1px solid var(--border); overflow-y: auto; padding: 10px 0;
     }
-    .sidebar-item {
+    .nav-btn {
       display: flex; align-items: center; gap: 10px; width: 100%;
-      padding: 10px 18px; border: none; background: transparent; cursor: pointer;
-      font-family: 'JetBrains Mono', monospace; font-size: 11px;
-      letter-spacing: .08em; text-transform: uppercase; color: #666;
-      text-align: left; border-left: 2px solid transparent; transition: all .15s;
+      padding: 10px 16px; border: none; background: transparent; cursor: pointer;
+      font-family: 'JetBrains Mono', monospace; font-size: 10px;
+      letter-spacing: .1em; text-transform: uppercase; color: #555;
+      text-align: left; border-left: 2px solid transparent;
     }
-    .sidebar-item:hover { color: var(--cream); background: rgba(255,255,255,.03); }
-    .sidebar-item.active { color: var(--cream); border-left-color: var(--red); background: rgba(230,50,40,.06); }
-    .sidebar-dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; flex-shrink: 0; }
+    .nav-btn:hover { color: var(--cream); background: rgba(255,255,255,.03); }
+    .nav-btn.active { color: var(--cream); border-left-color: var(--red); background: rgba(230,50,40,.06); }
+    .nav-dot { width: 5px; height: 5px; border-radius: 50%; background: currentColor; flex-shrink: 0; }
 
-    /* Main content */
-    .editor-main { flex: 1; overflow-y: auto; padding: 40px 48px 80px; }
-    .section-heading {
-      font-size: 22px; font-weight: 900; letter-spacing: -.02em; margin-bottom: 6px;
+    /* Main */
+    .main { flex: 1; overflow-y: auto; padding: 36px 44px 80px; }
+    .sec-title { font-size: 20px; font-weight: 900; letter-spacing: -.02em; margin-bottom: 4px; }
+    .sec-sub {
+      font-family: 'JetBrains Mono', monospace; font-size: 10px;
+      letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-bottom: 28px;
     }
-    .section-sub {
-      font-family: 'JetBrains Mono', monospace; font-size: 11px;
-      letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-bottom: 36px;
+    .view-link {
+      display: inline-flex; align-items: center; gap: 6px; margin-bottom: 28px;
+      font-family: 'JetBrains Mono', monospace; font-size: 10px;
+      letter-spacing: .1em; text-transform: uppercase; color: #444; text-decoration: none;
     }
+    .view-link:hover { color: var(--muted); }
 
-    /* Field groups */
-    .field-group { margin-bottom: 36px; }
-    .field-group-title {
+    /* Field group */
+    .grp { margin-bottom: 32px; }
+    .grp-title {
       font-family: 'JetBrains Mono', monospace; font-size: 10px;
       letter-spacing: .14em; text-transform: uppercase; color: var(--red);
-      border-bottom: 1px solid rgba(230,50,40,.2); padding-bottom: 8px; margin-bottom: 20px;
+      border-bottom: 1px solid rgba(230,50,40,.2); padding-bottom: 8px; margin-bottom: 18px;
     }
-    .fields-grid { display: flex; flex-direction: column; gap: 20px; }
-    .fields-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .fields      { display: flex; flex-direction: column; gap: 18px; }
+    .fields-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
 
-    /* Individual field */
-    .field { display: flex; flex-direction: column; gap: 6px; }
-    .field-label {
+    /* Field */
+    .field { display: flex; flex-direction: column; gap: 5px; }
+    .field-lbl {
       font-family: 'JetBrains Mono', monospace; font-size: 10px;
       letter-spacing: .12em; text-transform: uppercase; color: var(--muted);
     }
     .field input, .field textarea {
       background: var(--input); border: 1px solid rgba(255,255,255,.1);
       color: var(--cream); font-family: 'Barlow', sans-serif; font-size: 15px;
-      padding: 11px 14px; outline: none; width: 100%;
-      transition: border-color .15s;
+      padding: 10px 13px; outline: none; width: 100%; transition: border-color .15s;
     }
     .field input:focus, .field textarea:focus { border-color: var(--red); }
-    .field input::placeholder, .field textarea::placeholder { color: #333; }
-    .field textarea { resize: vertical; min-height: 90px; line-height: 1.6; }
-    .field-hint {
-      font-size: 12px; color: #555; line-height: 1.4;
+    .field textarea { resize: vertical; min-height: 88px; line-height: 1.6; }
+    .field-hint { font-size: 12px; color: #555; line-height: 1.4; }
+
+    /* Loading overlay */
+    #overlay {
+      position: fixed; inset: 0; background: var(--bg);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 16px; z-index: 999;
+    }
+    #overlay.hidden { display: none; }
+    .spinner {
+      width: 30px; height: 30px; border: 2px solid rgba(255,255,255,.08);
+      border-top-color: var(--red); border-radius: 50%;
+      animation: spin .7s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .overlay-msg {
+      font-family: 'JetBrains Mono', monospace; font-size: 11px;
+      letter-spacing: .1em; text-transform: uppercase; color: var(--muted);
     }
 
-    /* Preview link in section */
-    .preview-link {
-      display: inline-flex; align-items: center; gap: 6px;
-      font-family: 'JetBrains Mono', monospace; font-size: 10px;
-      letter-spacing: .1em; text-transform: uppercase; color: #444;
-      text-decoration: none; margin-bottom: 32px;
-    }
-    .preview-link:hover { color: var(--muted); }
-
-    /* Unsaved changes indicator */
-    .unsaved-bar {
-      position: fixed; bottom: 24px; right: 24px; z-index: 100;
+    /* Unsaved bar */
+    #unsaved {
+      position: fixed; bottom: 20px; right: 20px; z-index: 100;
       background: #1a1a1a; border: 1px solid var(--border);
-      padding: 12px 20px; display: none; align-items: center; gap: 16px;
+      padding: 11px 18px; display: none; align-items: center; gap: 14px;
       font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--muted);
-      box-shadow: 0 8px 32px rgba(0,0,0,.5);
+      box-shadow: 0 6px 24px rgba(0,0,0,.5);
     }
-    .unsaved-bar.visible { display: flex; }
-    .unsaved-save {
-      background: var(--red); color: #fff; border: none; cursor: pointer;
-      padding: 8px 16px; font-family: 'JetBrains Mono', monospace;
-      font-size: 11px; letter-spacing: .1em; text-transform: uppercase;
-    }
-    .unsaved-save:hover { background: #c8241b; }
+    #unsaved.show { display: flex; }
+    #unsaved .btn-red { padding: 7px 14px; font-size: 10px; }
   </style>
 </head>
 <body>
 
-<!-- login view hidden — editor loads immediately, auth only needed to save -->
-<div id="view-login" style="display:none"></div>
-
-<!-- ── LOADING ─────────────────────────────────────────────────────────────── -->
-<div id="view-loading">
+<!-- Loading overlay — shown on top while fetching -->
+<div id="overlay">
   <div class="spinner"></div>
-  <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.1em;color:var(--muted);text-transform:uppercase;">Loading content…</div>
+  <div class="overlay-msg" id="overlay-msg">Loading content…</div>
 </div>
 
-<!-- ── EDITOR ──────────────────────────────────────────────────────────────── -->
-<div id="view-editor">
+<!-- Editor — always in DOM, visible once overlay is removed -->
+<div id="app">
   <header class="hdr">
     <span class="hdr-logo">HC Studio</span>
     <div class="hdr-sep"></div>
-    <span class="hdr-section" id="hdr-section-name">Site Editor</span>
+    <span class="hdr-title" id="hdr-title">Site Editor</span>
     <span class="hdr-status" id="hdr-status"></span>
-    <a href="https://sparkly-buttercream-86e597.netlify.app" target="_blank" class="hdr-btn hdr-btn-view">
-      View Live Site ↗
+    <a href="https://sparkly-buttercream-86e597.netlify.app" target="_blank" class="btn btn-ghost">
+      Live Site ↗
     </a>
-    <button class="hdr-btn hdr-btn-save" id="btn-save" onclick="saveContent()" style="display:none">Save Changes</button>
-    <button class="hdr-btn" id="hdr-login-btn" onclick="netlifyIdentity.open()" style="background:#333;color:var(--cream);">Sign in to Save</button>
-    <button class="hdr-btn hdr-btn-logout" onclick="netlifyIdentity.logout()" style="display:none">Sign out</button>
+    <button id="btn-login" class="btn btn-ghost" onclick="netlifyIdentity.open()" style="display:none">Sign In to Save</button>
+    <button id="btn-save"  class="btn btn-red"   onclick="doSave()"              style="display:none">Save Changes</button>
+    <button id="btn-out"   class="btn btn-dim"   onclick="netlifyIdentity.logout()" style="display:none">Sign out</button>
   </header>
-
-  <div class="editor-body">
+  <div class="body">
     <aside class="sidebar" id="sidebar"></aside>
-    <main class="editor-main" id="editor-main"></main>
+    <main  class="main"    id="main"></main>
   </div>
 </div>
 
-<!-- Floating save bar -->
-<div class="unsaved-bar" id="unsaved-bar">
-  Unsaved changes
-  <button class="unsaved-save" onclick="saveContent()">Save Now</button>
+<div id="unsaved">
+  Unsaved changes &nbsp;
+  <button class="btn btn-red" onclick="doSave()">Save Now</button>
 </div>
 
 <script>
-// ── DATA: all sections + fields ─────────────────────────────────────────────
+// ─── SECTION / FIELD SCHEMA ──────────────────────────────────────────────────
 var SECTIONS = [
   { id:'hero', label:'Hero', anchor:'', fields:[
-    { key:'heroTagline',    label:'Tagline (red eyebrow text)',  type:'text',     hint:'Shown above the main headline — e.g. "Game Development Studio · Kuala Lumpur"' },
-    { key:'heroHeadline',   label:'Headline — plain part',       type:'text',     hint:'e.g. "Your game"' },
-    { key:'heroHeadlineEm', label:'Headline — italic/red part',  type:'text',     hint:'e.g. "idea."' },
-    { key:'heroHeadline2',  label:'Headline — second line',      type:'text',     hint:'e.g. "Built and shipped."' },
-    { key:'heroDescription',label:'Description paragraph',       type:'textarea', hint:'Main paragraph shown under the headline' },
-    { key:'heroVideoId',    label:'YouTube Video ID (background)',type:'text',     hint:'The part after watch?v= in the YouTube URL' },
+    {k:'heroTagline',    l:'Tagline (red eyebrow text)',  t:'text',  h:'e.g. "Game Development Studio · Kuala Lumpur"'},
+    {k:'heroHeadline',   l:'Headline — plain part',       t:'text',  h:'e.g. "Your game"'},
+    {k:'heroHeadlineEm', l:'Headline — italic / red part',t:'text',  h:'e.g. "idea."'},
+    {k:'heroHeadline2',  l:'Headline — second line',      t:'text',  h:'e.g. "Built and shipped."'},
+    {k:'heroDescription',l:'Description paragraph',       t:'area'},
+    {k:'heroVideoId',    l:'YouTube Video ID',            t:'text',  h:'Part after watch?v= in the YouTube URL'},
   ], groups:[
-    { title:'Bottom Stats Bar', keys:['heroStat1Label','heroStat1Val','heroStat2Label','heroStat2Val','heroStat3Label','heroStat3Val','heroStat4Label','heroStat4Val'], cols:2,
-      fields:[
-        { key:'heroStat1Label', label:'Stat 1 — Label', type:'text', hint:'e.g. Founded' },
-        { key:'heroStat1Val',   label:'Stat 1 — Value', type:'text', hint:'e.g. 2020' },
-        { key:'heroStat2Label', label:'Stat 2 — Label', type:'text', hint:'e.g. Based In' },
-        { key:'heroStat2Val',   label:'Stat 2 — Value', type:'text', hint:'e.g. Kuala Lumpur' },
-        { key:'heroStat3Label', label:'Stat 3 — Label', type:'text', hint:'e.g. Engine' },
-        { key:'heroStat3Val',   label:'Stat 3 — Value', type:'text', hint:'e.g. Unity · Godot' },
-        { key:'heroStat4Label', label:'Stat 4 — Label', type:'text', hint:'e.g. Flagship IP' },
-        { key:'heroStat4Val',   label:'Stat 4 — Value', type:'text', hint:'e.g. Midwest 90: Rapid City' },
-      ]
-    }
+    { title:'Stats Bar', cols:2, fields:[
+      {k:'heroStat1Label',l:'Stat 1 — Label', t:'text', h:'e.g. Founded'},
+      {k:'heroStat1Val',  l:'Stat 1 — Value', t:'text', h:'e.g. 2020'},
+      {k:'heroStat2Label',l:'Stat 2 — Label', t:'text', h:'e.g. Based In'},
+      {k:'heroStat2Val',  l:'Stat 2 — Value', t:'text', h:'e.g. Kuala Lumpur'},
+      {k:'heroStat3Label',l:'Stat 3 — Label', t:'text', h:'e.g. Engine'},
+      {k:'heroStat3Val',  l:'Stat 3 — Value', t:'text', h:'e.g. Unity · Godot'},
+      {k:'heroStat4Label',l:'Stat 4 — Label', t:'text', h:'e.g. Flagship IP'},
+      {k:'heroStat4Val',  l:'Stat 4 — Value', t:'text', h:'e.g. Midwest 90: Rapid City'},
+    ]}
   ]},
   { id:'about', label:'Who We Are', anchor:'#about', fields:[
-    { key:'aboutHeading1',   label:'Heading — line 1',         type:'text',     hint:'e.g. "A studio built"' },
-    { key:'aboutHeading2',   label:'Heading — line 2',         type:'text',     hint:'e.g. "on craft, community,"' },
-    { key:'aboutHeadingEm',  label:'Heading — italic/red line',type:'text',     hint:'e.g. "and creativity."' },
-    { key:'aboutP1',         label:'Paragraph 1',              type:'textarea' },
-    { key:'aboutP2',         label:'Paragraph 2',              type:'textarea' },
+    {k:'aboutHeading1',  l:'Heading — line 1',          t:'text', h:'e.g. "A studio built"'},
+    {k:'aboutHeading2',  l:'Heading — line 2',          t:'text', h:'e.g. "on craft, community,"'},
+    {k:'aboutHeadingEm', l:'Heading — italic / red',    t:'text', h:'e.g. "and creativity."'},
+    {k:'aboutP1',        l:'Paragraph 1',               t:'area'},
+    {k:'aboutP2',        l:'Paragraph 2',               t:'area'},
   ], groups:[
     { title:'Stats', cols:2, fields:[
-      { key:'aboutStat1Num',   label:'Stat 1 — Number', type:'text', hint:'e.g. 5+' },
-      { key:'aboutStat1Label', label:'Stat 1 — Label',  type:'text', hint:'e.g. Projects Shipped' },
-      { key:'aboutStat2Num',   label:'Stat 2 — Number', type:'text' },
-      { key:'aboutStat2Label', label:'Stat 2 — Label',  type:'text' },
-      { key:'aboutStat3Num',   label:'Stat 3 — Number', type:'text' },
-      { key:'aboutStat3Label', label:'Stat 3 — Label',  type:'text' },
+      {k:'aboutStat1Num',  l:'Stat 1 — Number', t:'text', h:'e.g. 5+'},
+      {k:'aboutStat1Label',l:'Stat 1 — Label',  t:'text', h:'e.g. Projects Shipped'},
+      {k:'aboutStat2Num',  l:'Stat 2 — Number', t:'text'},
+      {k:'aboutStat2Label',l:'Stat 2 — Label',  t:'text'},
+      {k:'aboutStat3Num',  l:'Stat 3 — Number', t:'text'},
+      {k:'aboutStat3Label',l:'Stat 3 — Label',  t:'text'},
     ]}
   ]},
   { id:'games', label:'Games & Projects', anchor:'#portfolio', fields:[
-    { key:'gamesHeading',   label:'Section heading — plain',      type:'text', hint:'e.g. "What We\'ve"' },
-    { key:'gamesHeadingEm', label:'Section heading — italic/red', type:'text', hint:'e.g. "Built."' },
+    {k:'gamesHeading',  l:'Section heading — plain',      t:'text', h:'e.g. "What We\'ve"'},
+    {k:'gamesHeadingEm',l:'Section heading — italic/red', t:'text', h:'e.g. "Built."'},
   ]},
   { id:'trusted', label:'Trusted By', anchor:'#collaborators', fields:[
-    { key:'trustedByHeading', label:'Section heading', type:'text' },
-    { key:'trustedByDesc',    label:'Description',     type:'textarea' },
+    {k:'trustedByHeading',l:'Section heading', t:'text'},
+    {k:'trustedByDesc',   l:'Description',     t:'area'},
   ]},
   { id:'press', label:'Press', anchor:'#press', fields:[
-    { key:'pressHeading', label:'Section heading (e.g. As Seen In)', type:'text' },
+    {k:'pressHeading', l:'Section heading', t:'text', h:'e.g. "As Seen In"'},
   ], groups:[
     { title:'Press Card 1', cols:2, fields:[
-      { key:'press1Outlet', label:'Outlet name', type:'text',     hint:'e.g. The Star' },
-      { key:'press1Year',   label:'Year',        type:'text',     hint:'e.g. 2023' },
-      { key:'press1Quote',  label:'Quote',       type:'textarea', hint:'The headline or excerpt' },
+      {k:'press1Outlet',l:'Outlet name', t:'text', h:'e.g. The Star'},
+      {k:'press1Year',  l:'Year',        t:'text', h:'e.g. 2023'},
+      {k:'press1Quote', l:'Quote',       t:'area'},
     ]},
     { title:'Press Card 2', cols:2, fields:[
-      { key:'press2Outlet', label:'Outlet name', type:'text' },
-      { key:'press2Year',   label:'Year',        type:'text' },
-      { key:'press2Quote',  label:'Quote',       type:'textarea' },
+      {k:'press2Outlet',l:'Outlet name', t:'text'},{k:'press2Year',l:'Year',t:'text'},{k:'press2Quote',l:'Quote',t:'area'},
     ]},
     { title:'Press Card 3', cols:2, fields:[
-      { key:'press3Outlet', label:'Outlet name', type:'text' },
-      { key:'press3Year',   label:'Year',        type:'text' },
-      { key:'press3Quote',  label:'Quote',       type:'textarea' },
+      {k:'press3Outlet',l:'Outlet name', t:'text'},{k:'press3Year',l:'Year',t:'text'},{k:'press3Quote',l:'Quote',t:'area'},
     ]},
     { title:'Press Card 4', cols:2, fields:[
-      { key:'press4Outlet', label:'Outlet name', type:'text' },
-      { key:'press4Year',   label:'Year',        type:'text' },
-      { key:'press4Quote',  label:'Quote',       type:'textarea' },
+      {k:'press4Outlet',l:'Outlet name', t:'text'},{k:'press4Year',l:'Year',t:'text'},{k:'press4Quote',l:'Quote',t:'area'},
     ]},
     { title:'Press Card 5', cols:2, fields:[
-      { key:'press5Outlet', label:'Outlet name', type:'text' },
-      { key:'press5Year',   label:'Year',        type:'text' },
-      { key:'press5Quote',  label:'Quote',       type:'textarea' },
+      {k:'press5Outlet',l:'Outlet name', t:'text'},{k:'press5Year',l:'Year',t:'text'},{k:'press5Quote',l:'Quote',t:'area'},
     ]},
   ]},
   { id:'services', label:'Services', anchor:'#services', fields:[
-    { key:'servicesHeading', label:'Section heading (e.g. What We Build)', type:'text' },
+    {k:'servicesHeading',l:'Section heading', t:'text', h:'e.g. "What We Build"'},
   ], groups:[
     { title:'Service Card 1', cols:1, fields:[
-      { key:'svc1Num',   label:'Label',       type:'text',     hint:'e.g. 01 · Full Service' },
-      { key:'svc1Title', label:'Title',       type:'text',     hint:'e.g. Game Development' },
-      { key:'svc1Desc',  label:'Description', type:'textarea' },
-      { key:'svc1Tags',  label:'Tags',        type:'text',     hint:'Comma-separated — e.g. PC · Steam,Mobile' },
+      {k:'svc1Num',  l:'Label',       t:'text', h:'e.g. 01 · Full Service'},
+      {k:'svc1Title',l:'Title',       t:'text', h:'e.g. Game Development'},
+      {k:'svc1Desc', l:'Description', t:'area'},
+      {k:'svc1Tags', l:'Tags (comma-separated)', t:'text', h:'e.g. PC · Steam,Mobile'},
     ]},
     { title:'Service Card 2', cols:1, fields:[
-      { key:'svc2Num',   label:'Label',       type:'text' },
-      { key:'svc2Title', label:'Title',       type:'text' },
-      { key:'svc2Desc',  label:'Description', type:'textarea' },
-      { key:'svc2Tags',  label:'Tags',        type:'text',     hint:'Comma-separated' },
+      {k:'svc2Num',l:'Label',t:'text'},{k:'svc2Title',l:'Title',t:'text'},
+      {k:'svc2Desc',l:'Description',t:'area'},{k:'svc2Tags',l:'Tags (comma-separated)',t:'text'},
     ]},
     { title:'Service Card 3', cols:1, fields:[
-      { key:'svc3Num',   label:'Label',       type:'text' },
-      { key:'svc3Title', label:'Title',       type:'text' },
-      { key:'svc3Desc',  label:'Description', type:'textarea' },
-      { key:'svc3Tags',  label:'Tags',        type:'text',     hint:'Comma-separated' },
+      {k:'svc3Num',l:'Label',t:'text'},{k:'svc3Title',l:'Title',t:'text'},
+      {k:'svc3Desc',l:'Description',t:'area'},{k:'svc3Tags',l:'Tags (comma-separated)',t:'text'},
     ]},
   ]},
-  { id:'flagship', label:'Flagship Game', anchor:'#flagship', fields:[
-  ], groups:[
-    { title:'Games Grid Card (small)', cols:2, fields:[
-      { key:'flagshipTitleEm',      label:'Title — italic part',      type:'text',     hint:'e.g. Midwest 90:' },
-      { key:'flagshipTitle',        label:'Title — plain part',       type:'text',     hint:'e.g. Rapid City' },
-      { key:'flagshipDescription',  label:'Short description',        type:'textarea', hint:'Shown in the bento grid card' },
-      { key:'steamLink',            label:'Steam / Itch.io link',     type:'text' },
+  { id:'flagship', label:'Flagship Game', anchor:'#flagship', fields:[], groups:[
+    { title:'Games Grid Card', cols:2, fields:[
+      {k:'flagshipTitleEm',    l:'Title — italic part',   t:'text', h:'e.g. Midwest 90:'},
+      {k:'flagshipTitle',      l:'Title — plain part',    t:'text', h:'e.g. Rapid City'},
+      {k:'flagshipDescription',l:'Short description',     t:'area'},
+      {k:'steamLink',          l:'Steam / Itch.io link',  t:'text'},
     ]},
-    { title:'Feature Section (full-width)', cols:2, fields:[
-      { key:'flagshipFeatureSubtitle', label:'Subtitle / eyebrow',    type:'text',     hint:'e.g. Flagship IP · In Development' },
-      { key:'flagshipFeatureTitleEm',  label:'Title — italic part',   type:'text' },
-      { key:'flagshipFeatureTitle',    label:'Title — plain part',    type:'text' },
-      { key:'flagshipFeatureDesc',     label:'Description',           type:'textarea' },
+    { title:'Feature Section', cols:2, fields:[
+      {k:'flagshipFeatureSubtitle',l:'Subtitle / eyebrow', t:'text', h:'e.g. Flagship IP · In Development'},
+      {k:'flagshipFeatureTitleEm', l:'Title — italic part',t:'text'},
+      {k:'flagshipFeatureTitle',   l:'Title — plain part', t:'text'},
+      {k:'flagshipFeatureDesc',    l:'Description',        t:'area'},
     ]},
   ]},
   { id:'community', label:'Community', anchor:'#community', fields:[
-    { key:'communityHeading',   label:'Heading — plain part',      type:'text',     hint:'e.g. "Come hang out"' },
-    { key:'communityHeadingEm', label:'Heading — italic/red part', type:'text',     hint:'e.g. "with us."' },
-    { key:'communityP1',        label:'Paragraph 1',               type:'textarea' },
-    { key:'communityP2',        label:'Paragraph 2',               type:'textarea' },
+    {k:'communityHeading',  l:'Heading — plain part',      t:'text', h:'e.g. "Come hang out"'},
+    {k:'communityHeadingEm',l:'Heading — italic / red',    t:'text', h:'e.g. "with us."'},
+    {k:'communityP1',       l:'Paragraph 1',               t:'area'},
+    {k:'communityP2',       l:'Paragraph 2',               t:'area'},
   ]},
   { id:'contact', label:'Contact', anchor:'#contact', fields:[
-    { key:'contactHeading',     label:'Heading — plain part',      type:'text',     hint:'e.g. "Let\'s build"' },
-    { key:'contactHeadingEm',   label:'Heading — italic/red part', type:'text',     hint:'e.g. "something great."' },
-    { key:'contactDescription', label:'Description',               type:'textarea' },
-    { key:'contactEmail',       label:'Email address',             type:'text' },
+    {k:'contactHeading',    l:'Heading — plain part',      t:'text', h:'e.g. "Let\'s build"'},
+    {k:'contactHeadingEm',  l:'Heading — italic / red',    t:'text', h:'e.g. "something great."'},
+    {k:'contactDescription',l:'Description',               t:'area'},
+    {k:'contactEmail',      l:'Email address',             t:'text'},
   ]},
   { id:'discord', label:'Discord & Social', anchor:'#community', fields:[
-    { key:'discordServerName',    label:'Discord card — server name',type:'text' },
-    { key:'discordServerTagline', label:'Discord card — tagline',   type:'text' },
-    { key:'discordInvite',        label:'Discord invite URL',        type:'text',     hint:'e.g. https://discord.gg/H64hNB6gzt' },
-    { key:'youtubeLink',          label:'YouTube channel URL',       type:'text' },
-    { key:'linkedinLink',         label:'LinkedIn page URL',         type:'text' },
+    {k:'discordServerName',   l:'Discord card — server name', t:'text'},
+    {k:'discordServerTagline',l:'Discord card — tagline',     t:'text'},
+    {k:'discordInvite',       l:'Discord invite URL',         t:'text', h:'e.g. https://discord.gg/H64hNB6gzt'},
+    {k:'youtubeLink',         l:'YouTube channel URL',        t:'text'},
+    {k:'linkedinLink',        l:'LinkedIn page URL',          t:'text'},
   ]},
   { id:'footer', label:'Footer', anchor:'', fields:[
-    { key:'footerCopyright', label:'Copyright text', type:'text', hint:'e.g. © 2024 Hidden Chest Studios (MY)' },
-    { key:'footerLocation',  label:'Location',       type:'text', hint:'e.g. Kuala Lumpur, MY' },
+    {k:'footerCopyright',l:'Copyright text', t:'text', h:'e.g. © 2024 Hidden Chest Studios (MY)'},
+    {k:'footerLocation', l:'Location',       t:'text', h:'e.g. Kuala Lumpur, MY'},
   ]},
 ];
 
-// ── STATE ────────────────────────────────────────────────────────────────────
-var content = {};
-var fileSha  = '';
-var token    = '';
-var hasChanges = false;
-var currentSection = 'hero';
+// ─── STATE ────────────────────────────────────────────────────────────────────
+var data       = {};
+var fileSha    = '';
+var authToken  = '';
+var dirty      = false;
+var activeId   = 'hero';
 
-// ── AUTH ─────────────────────────────────────────────────────────────────────
-netlifyIdentity.on('init', function(user) {
-  if (user) { token = ''; refreshToken(); }
-});
-netlifyIdentity.on('login', function(user) {
-  netlifyIdentity.close();
-  refreshToken();
-  updateAuthUI();
-});
-netlifyIdentity.on('logout', function() {
-  token = '';
-  updateAuthUI();
-});
+// ─── AUTH ─────────────────────────────────────────────────────────────────────
+// Wrapped in try/catch — if identity CDN fails, editor still loads (just can't save)
+try {
+  netlifyIdentity.on('init',   function(u) { if (u) refreshToken(); else updateAuthUI(false); });
+  netlifyIdentity.on('login',  function()  { netlifyIdentity.close(); refreshToken(); });
+  netlifyIdentity.on('logout', function()  { authToken = ''; updateAuthUI(false); });
+} catch(e) { /* identity widget unavailable */ }
+
+// ─── BOOT ─────────────────────────────────────────────────────────────────────
+// Script is at end of <body>, DOM is already ready — call directly
+buildSidebar();
+loadContent();
 
 function refreshToken() {
-  var user = netlifyIdentity.currentUser();
-  if (!user) return;
-  user.jwt().then(function(t) { token = t; updateAuthUI(); }).catch(function() {});
+  var u = netlifyIdentity.currentUser();
+  if (!u) return;
+  u.jwt().then(function(t) { authToken = t; updateAuthUI(true); }).catch(function() { updateAuthUI(false); });
 }
 
-function updateAuthUI() {
-  var loggedIn = !!netlifyIdentity.currentUser();
-  var saveBtn = document.getElementById('btn-save');
-  var logoutBtn = document.querySelector('.hdr-btn-logout');
-  if (saveBtn)    saveBtn.style.display    = loggedIn ? '' : 'none';
-  if (logoutBtn)  logoutBtn.style.display  = loggedIn ? '' : 'none';
-  var loginBtn = document.getElementById('hdr-login-btn');
-  if (loginBtn)   loginBtn.style.display   = loggedIn ? 'none' : '';
+function updateAuthUI(loggedIn) {
+  el('btn-login').style.display = loggedIn ? 'none' : '';
+  el('btn-save').style.display  = loggedIn ? '' : 'none';
+  el('btn-out').style.display   = loggedIn ? '' : 'none';
 }
 
-// ── VIEWS ────────────────────────────────────────────────────────────────────
-function show(id) {
-  ['view-login','view-loading','view-editor'].forEach(function(v) {
-    var el = document.getElementById(v);
-    el.style.display = 'none';
-  });
-  var target = document.getElementById(id);
-  target.style.display = 'flex';
-  if (id === 'view-editor') target.style.flexDirection = 'column';
-}
-
-// ── START EDITOR — reads public content.json, no auth needed ─────────────────
-function startEditor() {
-  show('view-loading');
-  fetch('/content.json?nocache=' + Date.now())
-    .then(function(r) {
-      if (!r.ok) throw new Error('HTTP ' + r.status);
-      return r.json();
-    })
+// ─── LOAD content.json ────────────────────────────────────────────────────────
+function loadContent() {
+  setOverlay(true, 'Loading content…');
+  fetch('/content.json?t=' + Date.now())
+    .then(function(r) { return r.ok ? r.json() : Promise.reject('HTTP ' + r.status); })
     .then(function(c) {
-      content = c;
-      buildEditor();
-      show('view-editor');
-      updateAuthUI();
+      data = c;
+      showSection(activeId);
+      setOverlay(false);
     })
     .catch(function(e) {
-      console.error(e);
-      // Show editor with empty content so user can still see the interface
-      content = {};
-      buildEditor();
-      show('view-editor');
-      setStatus('Warning: could not load current content', 'error');
-      updateAuthUI();
+      setOverlay(false);
+      setStatus('Could not load content.json: ' + e, 'err');
     });
 }
 
-// ── BUILD UI ─────────────────────────────────────────────────────────────────
-function buildEditor() {
-  buildSidebar();
-  showSection(currentSection);
-}
-
+// ─── BUILD SIDEBAR ────────────────────────────────────────────────────────────
 function buildSidebar() {
-  var sb = document.getElementById('sidebar');
-  sb.innerHTML = SECTIONS.map(function(s) {
-    return '<button class="sidebar-item" data-id="' + s.id + '" onclick="showSection(\'' + s.id + '\')">'
-         + '<span class="sidebar-dot"></span>' + s.label + '</button>';
+  el('sidebar').innerHTML = SECTIONS.map(function(s) {
+    return '<button class="nav-btn" onclick="showSection(\'' + s.id + '\')" data-id="' + s.id + '">'
+         + '<span class="nav-dot"></span>' + s.label + '</button>';
   }).join('');
 }
 
+// ─── SHOW SECTION ─────────────────────────────────────────────────────────────
 function showSection(id) {
-  currentSection = id;
-  // Update sidebar active state
-  document.querySelectorAll('.sidebar-item').forEach(function(b) {
+  activeId = id;
+  document.querySelectorAll('.nav-btn').forEach(function(b) {
     b.classList.toggle('active', b.dataset.id === id);
   });
   var sec = SECTIONS.find(function(s) { return s.id === id; });
   if (!sec) return;
-  document.getElementById('hdr-section-name').textContent = sec.label;
 
-  var html = '';
-  // Section title
-  html += '<div class="section-heading">' + sec.label + '</div>';
-  html += '<div class="section-sub">Edit ' + sec.label.toLowerCase() + ' content</div>';
-  // View on site link
+  el('hdr-title').textContent = sec.label;
+
+  var h = '<div class="sec-title">' + esc(sec.label) + '</div>'
+        + '<div class="sec-sub">Edit ' + esc(sec.label.toLowerCase()) + ' content</div>';
+
   if (sec.anchor) {
-    html += '<a class="preview-link" href="https://sparkly-buttercream-86e597.netlify.app' + sec.anchor + '" target="_blank">'
-          + '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>'
-          + 'View this section on live site</a>';
+    h += '<a class="view-link" href="https://sparkly-buttercream-86e597.netlify.app' + sec.anchor + '" target="_blank">'
+       + '<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">'
+       + '<path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/>'
+       + '<polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>'
+       + ' View on live site</a>';
   }
-  // Main fields (single column)
+
+  // Top-level fields
   if (sec.fields && sec.fields.length) {
-    html += '<div class="field-group"><div class="fields-grid">';
-    sec.fields.forEach(function(f) {
-      html += renderField(f);
-    });
-    html += '</div></div>';
+    h += '<div class="grp"><div class="fields">' + sec.fields.map(renderField).join('') + '</div></div>';
   }
-  // Field groups
+
+  // Groups
   if (sec.groups) {
     sec.groups.forEach(function(g) {
-      html += '<div class="field-group">';
-      html += '<div class="field-group-title">' + g.title + '</div>';
-      html += '<div class="' + (g.cols === 2 ? 'fields-2col' : 'fields-grid') + '">';
-      g.fields.forEach(function(f) {
-        html += renderField(f);
-      });
-      html += '</div></div>';
+      h += '<div class="grp"><div class="grp-title">' + esc(g.title) + '</div>'
+         + '<div class="' + (g.cols === 2 ? 'fields-2col' : 'fields') + '">'
+         + g.fields.map(renderField).join('')
+         + '</div></div>';
     });
   }
 
-  document.getElementById('editor-main').innerHTML = html;
-  document.getElementById('editor-main').scrollTop = 0;
+  el('main').innerHTML = h;
+  el('main').scrollTop = 0;
 }
 
+// ─── RENDER FIELD ─────────────────────────────────────────────────────────────
 function renderField(f) {
-  var val = (content[f.key] !== undefined && content[f.key] !== null) ? content[f.key] : '';
-  var inp = '';
-  if (f.type === 'textarea') {
-    inp = '<textarea rows="3" data-key="' + f.key + '" onchange="updateField(this)" oninput="markDirty()">'
-        + escHtml(val) + '</textarea>';
-  } else {
-    inp = '<input type="text" data-key="' + f.key + '" value="' + escAttr(val) + '"'
-        + ' onchange="updateField(this)" oninput="markDirty()">';
-  }
+  var val = (data[f.k] != null) ? String(data[f.k]) : '';
+  var inp = f.t === 'area'
+    ? '<textarea data-key="' + f.k + '" oninput="onEdit(this)">' + esc(val) + '</textarea>'
+    : '<input type="text" data-key="' + f.k + '" value="' + escAttr(val) + '" oninput="onEdit(this)">';
   return '<div class="field">'
-       + '<div class="field-label">' + f.label + '</div>'
+       + '<div class="field-lbl">' + esc(f.l) + '</div>'
        + inp
-       + (f.hint ? '<div class="field-hint">' + f.hint + '</div>' : '')
+       + (f.h ? '<div class="field-hint">' + esc(f.h) + '</div>' : '')
        + '</div>';
 }
 
-function escHtml(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
-function escAttr(s) { return String(s).replace(/"/g,'&quot;'); }
-
-function updateField(el) {
-  content[el.dataset.key] = el.value;
-  markDirty();
-}
-
-function markDirty() {
-  if (!hasChanges) {
-    hasChanges = true;
-    document.getElementById('unsaved-bar').classList.add('visible');
+// ─── EDIT HANDLER ─────────────────────────────────────────────────────────────
+function onEdit(input) {
+  data[input.dataset.key] = input.value;
+  if (!dirty) {
+    dirty = true;
+    el('unsaved').classList.add('show');
     setStatus('');
   }
 }
 
+// ─── SAVE ─────────────────────────────────────────────────────────────────────
+function doSave() {
+  var u = netlifyIdentity.currentUser();
+  if (!u) { netlifyIdentity.open(); return; }
+
+  // Collect any in-focus field value
+  document.querySelectorAll('[data-key]').forEach(function(i) { data[i.dataset.key] = i.value; });
+
+  var btn = el('btn-save');
+  btn.disabled = true; btn.textContent = 'Saving…';
+  setStatus('Saving…', 'ing');
+
+  var body64 = btoa(unescape(encodeURIComponent(JSON.stringify(data, null, 2))));
+
+  u.jwt()
+    .then(function(t) {
+      authToken = t;
+      return fetch('/.netlify/git/github/contents/content.json', {
+        headers: { 'Authorization': 'Bearer ' + authToken }
+      });
+    })
+    .then(function(r) {
+      if (!r.ok) throw new Error('Git Gateway returned ' + r.status + '. Enable it: Netlify → Identity → Services → Git Gateway');
+      return r.json();
+    })
+    .then(function(meta) {
+      fileSha = meta.sha;
+      return fetch('/.netlify/git/github/contents/content.json', {
+        method: 'PUT',
+        headers: { 'Authorization': 'Bearer ' + authToken, 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message: 'Update site content', content: body64, sha: fileSha })
+      });
+    })
+    .then(function(r) {
+      if (!r.ok) throw new Error('Write failed: HTTP ' + r.status);
+      return r.json();
+    })
+    .then(function(res) {
+      if (res.content) fileSha = res.content.sha;
+      dirty = false;
+      el('unsaved').classList.remove('show');
+      setStatus('✓ Saved — deploying in ~30s', 'ok');
+      btn.disabled = false; btn.textContent = 'Save Changes';
+      setTimeout(function() { setStatus(''); }, 7000);
+    })
+    .catch(function(e) {
+      setStatus('❌ ' + (e.message || 'Save failed'), 'err');
+      btn.disabled = false; btn.textContent = 'Save Changes';
+    });
+}
+
+// ─── HELPERS ──────────────────────────────────────────────────────────────────
+function el(id) { return document.getElementById(id); }
+function esc(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+function escAttr(s) { return String(s).replace(/"/g,'&quot;'); }
+
+function setOverlay(show, msg) {
+  var o = el('overlay');
+  if (show) { o.classList.remove('hidden'); if (msg) el('overlay-msg').textContent = msg; }
+  else       { o.classList.add('hidden'); }
+}
+
 function setStatus(msg, cls) {
-  var el = document.getElementById('hdr-status');
-  el.textContent = msg;
-  el.className = 'hdr-status' + (cls ? ' ' + cls : '');
+  var s = el('hdr-status');
+  s.textContent = msg;
+  s.className = 'hdr-status' + (cls ? ' ' + cls : '');
 }
 
-// ── SAVE ─────────────────────────────────────────────────────────────────────
-function saveContent() {
-  var user = netlifyIdentity.currentUser();
-  if (!user) {
-    netlifyIdentity.open();
-    return;
-  }
-
-  var btn = document.getElementById('btn-save');
-  btn.disabled = true;
-  btn.textContent = 'Saving…';
-  setStatus('Saving…', 'saving');
-
-  // Collect latest values from all visible inputs/textareas
-  document.querySelectorAll('[data-key]').forEach(function(el) {
-    content[el.dataset.key] = el.value;
-  });
-
-  var jsonStr = JSON.stringify(content, null, 2);
-  var encoded = btoa(unescape(encodeURIComponent(jsonStr)));
-
-  // Refresh JWT then get current SHA then save
-  user.jwt().then(function(t) {
-    token = t;
-    // Always get fresh SHA before writing to avoid conflicts
-    return fetch('/.netlify/git/github/contents/content.json', {
-      headers: { 'Authorization': 'Bearer ' + token }
-    });
-  }).then(function(r) {
-    if (!r.ok) throw new Error('git-gateway ' + r.status + ' — Enable Git Gateway in Netlify → Identity → Services');
-    return r.json();
-  }).then(function(meta) {
-    fileSha = meta.sha;
-    return fetch('/.netlify/git/github/contents/content.json', {
-      method: 'PUT',
-      headers: { 'Authorization': 'Bearer ' + token, 'Content-Type': 'application/json' },
-      body: JSON.stringify({ message: 'Update site content via admin', content: encoded, sha: fileSha })
-    });
-  }).then(function(r) {
-    if (!r.ok) throw new Error('Save failed HTTP ' + r.status);
-    return r.json();
-  }).then(function(data) {
-    if (data.content) fileSha = data.content.sha;
-    hasChanges = false;
-    document.getElementById('unsaved-bar').classList.remove('visible');
-    setStatus('✓ Saved — site deploying in ~30s', 'saved');
-    btn.disabled = false;
-    btn.textContent = 'Save Changes';
-    setTimeout(function() { setStatus(''); }, 6000);
-  }).catch(function(e) {
-    console.error(e);
-    setStatus('❌ ' + (e.message || 'Save failed'), 'error');
-    btn.disabled = false;
-    btn.textContent = 'Save Changes';
-  });
-}
-
-// Warn before closing with unsaved changes
-window.addEventListener('beforeunload',
+window.addEventListener('beforeunload', function(e) {
+  if (dirty) { e.preventDefault(); e.returnValue = ''; }
+});
+</script>
+</body>
+</html>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
