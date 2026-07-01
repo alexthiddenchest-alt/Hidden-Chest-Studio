@@ -108,11 +108,10 @@
     .press-kit-link { font-family:'JetBrains Mono',monospace; font-size:clamp(10px,.8vw,13px); letter-spacing:.1em; text-transform:uppercase; color:#888; text-decoration:none; }
     .press-kit-link:hover { color:var(--cream); }
     .press-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:0; border:1px solid rgba(255,255,255,.06); }
-    .press-card { padding:clamp(20px,2vw,36px) clamp(16px,1.8vw,28px); border-right:1px solid rgba(255,255,255,.06); display:flex; flex-direction:column; gap:10px; }
+    .press-card { padding:clamp(24px,2.5vw,44px) clamp(20px,2vw,36px); border-right:1px solid rgba(255,255,255,.06); display:flex; align-items:center; justify-content:center; }
     .press-card:last-child { border-right:none; }
-    .press-outlet { font-family:'Barlow',sans-serif; font-size:clamp(15px,1.3vw,20px); font-weight:800; color:var(--cream); }
-    .press-quote { font-family:'Barlow',sans-serif; font-size:clamp(14px,1.15vw,18px); color:#c8c4bc; line-height:1.65; font-style:italic; flex:1; }
-    .press-year { font-family:'JetBrains Mono',monospace; font-size:clamp(11px,.8vw,13px); letter-spacing:.1em; color:#999; margin-top:auto; }
+    .press-logo { max-height:clamp(28px,2.2vw,40px); width:auto; max-width:100%; filter:brightness(0) invert(1); opacity:.65; transition:opacity .2s; display:block; }
+    .press-card:hover .press-logo { opacity:1; }
 
     /* GAMES BENTO */
     .games-header { display:flex; align-items:flex-end; justify-content:space-between; margin-bottom:24px; }
@@ -428,29 +427,19 @@
     </div>
     <div class="press-grid">
       <div class="press-card">
-        <div class="press-outlet" id="press1-outlet">The Star</div>
-        <div class="press-quote" id="press1-quote">"All Games and All Play"</div>
-        <div class="press-year" id="press1-year">2023</div>
+        <img src="images/Press%20logo/The_Star_Malaysia_Logo.png" alt="The Star" class="press-logo">
       </div>
       <div class="press-card">
-        <div class="press-outlet" id="press2-outlet">Vulcan Post</div>
-        <div class="press-quote" id="press2-quote">"Hidden Chest Studios building Malaysia's gaming future"</div>
-        <div class="press-year" id="press2-year">2022</div>
+        <img src="images/Press%20logo/Vulcan_Post_logo.png" alt="Vulcan Post" class="press-logo">
       </div>
       <div class="press-card">
-        <div class="press-outlet" id="press3-outlet">Malay Mail</div>
-        <div class="press-quote" id="press3-quote">"Rise of Malaysian game developers"</div>
-        <div class="press-year" id="press3-year">2023</div>
+        <img src="images/Press%20logo/Free_Malaysia_Today_logo.png" alt="Free Malaysia Today" class="press-logo">
       </div>
       <div class="press-card">
-        <div class="press-outlet" id="press4-outlet">DNA</div>
-        <div class="press-quote" id="press4-quote">Digital News Asia feature on local indie studios</div>
-        <div class="press-year" id="press4-year">2022</div>
+        <img src="images/Press%20logo/TheSun.png" alt="The Sun" class="press-logo">
       </div>
       <div class="press-card">
-        <div class="press-outlet" id="press5-outlet">BFM 89.9</div>
-        <div class="press-quote" id="press5-quote">Radio segment on Malaysia's creative tech industry</div>
-        <div class="press-year" id="press5-year">2023</div>
+        <img src="images/Press%20logo/IGN%20LOGO.png" alt="IGN" class="press-logo">
       </div>
     </div>
   </div>
@@ -555,4 +544,7 @@
     <div class="community-grid">
       <div>
         <h2 id="community-h2">Come hang out<br><em>with us.</em></h2>
-        <p class="community-p" id="community-p1">We're building a community to follow development of Midwest 90: Rapid City, participate in playtests, and be part of the Hidden Chest s
+        <p class="community-p" id="community-p1">We're building a community to follow development of Midwest 90: Rapid City, participate in playtests, and be part of the Hidden Chest story.</p>
+        <p class="community-p" id="community-p2">Get early alpha access, behind-the-scenes updates, and direct lines to the team.</p>
+        <a id="discord-invite-btn" href="https://discord.gg/H64hNB6gzt" target="_blank" class="discord-btn">
+          <svg width="18" height="14" viewBox="0 0 71 55" fill="white" xmlns="http://www.w3.org/2000/svg"><path d="M60.1 4.9A58.5 58.5 0 0 0 45.6.4a.2.2 0 0 0-.2.1 40.8 40.8 0 0 0-1.8 3.7 54 54 0 0 0-16.2 0A37.7 37.7 0 0 0 25.6.5a.2.2 0 0 0-.2-.1A58.3 58.3 0 0 0 10.9 4.9a.2.2 0 0 0-.1.1C1.6 18.1-.9 30.9.3 43.6a.2.2 0 0 0 .1.2 58.8 58.8 0 0 0 17.7 8.9.2.2 0 0 0 .3-.1 47.1 47.1 0 0 0 3.6-5.9.2.2 0 0 0-.1-.3 38.7 38.7 0 0 1-5.5-2.6.2.2 0 0 1 0-.4c.4-.3.7-.6 1.1-.8a.2.2 0 0 1 .2 0c11.5 5.3 24 5.3 35.4 0a.2.2 0 0 1 .2 0c.4.3.7.6 1.1.8a.2.2 0 0 1 0 .4 36.1 36.1 0 0 1-5.5 2.6.2.2 0 0 0-.1.3 47.1 47.1
