@@ -164,8 +164,22 @@
     .contact-desc { font-size:clamp(17px,1.5vw,23px); color:#d5d0c8; line-height:1.75; margin:0 0 36px; }
     .contact-email { display:block; font-family:'JetBrains Mono',monospace; font-size:clamp(14px,1.2vw,18px); letter-spacing:.05em; color:var(--cream); text-decoration:none; border-bottom:1px solid rgba(255,255,255,.12); padding-bottom:16px; margin-bottom:16px; }
     .contact-email:hover { color:var(--red); }
-    .contact-placeholder { background:#111; border:1px solid var(--border); padding:40px; display:flex; align-items:center; justify-content:center; text-align:center; }
-    .contact-placeholder p { font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:#333; margin-bottom:16px; }
+    /* CONTACT FORM */
+    .contact-form { display:flex; flex-direction:column; gap:14px; }
+    .form-row { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+    .form-field { display:flex; flex-direction:column; gap:7px; }
+    .form-label { font-family:'JetBrains Mono',monospace; font-size:clamp(9px,.75vw,11px); letter-spacing:.14em; text-transform:uppercase; color:#777; }
+    .form-input, .form-textarea { background:#0f0f0f; border:1px solid rgba(255,255,255,.1); color:var(--cream); font-family:'Barlow',sans-serif; font-size:clamp(14px,1.1vw,16px); padding:clamp(10px,.9vw,14px) clamp(12px,1vw,16px); outline:none; transition:border-color .2s; width:100%; }
+    .form-input:focus, .form-textarea:focus { border-color:var(--red); }
+    .form-input::placeholder, .form-textarea::placeholder { color:#444; }
+    .form-textarea { resize:vertical; min-height:clamp(100px,9vw,140px); line-height:1.6; }
+    .form-submit { display:flex; align-items:center; justify-content:center; gap:10px; width:100%; padding:clamp(12px,1.1vw,16px); background:var(--red); color:#fff; font-family:'JetBrains Mono',monospace; font-size:clamp(10px,.85vw,13px); letter-spacing:.14em; text-transform:uppercase; border:none; cursor:pointer; margin-top:4px; transition:background .2s; }
+    .form-submit:hover { background:#c8241b; }
+    .form-submit:disabled { background:#555; cursor:not-allowed; }
+    .form-success { display:none; flex-direction:column; align-items:center; justify-content:center; text-align:center; gap:14px; padding:clamp(32px,4vw,56px) 24px; border:1px solid rgba(255,255,255,.06); }
+    .form-success-check { width:44px; height:44px; border-radius:50%; background:rgba(230,50,40,.12); display:flex; align-items:center; justify-content:center; }
+    .form-success-title { font-family:'Barlow',sans-serif; font-weight:900; font-size:clamp(18px,1.6vw,24px); color:var(--cream); }
+    .form-success-sub { font-family:'JetBrains Mono',monospace; font-size:clamp(10px,.85vw,13px); letter-spacing:.08em; color:#666; }
 
     /* COMMUNITY */
     .community { padding:80px 96px; background:var(--bg); border-top:1px solid var(--border); }
@@ -496,8 +510,41 @@
         <p class="contact-desc" id="contact-desc">Have a game idea, branded gamification, AR/VR installation, or mobile app — drop us a line and let's talk scope, timeline, and budget.</p>
         <a id="contact-email-link" href="mailto:hiddencheststudios@gmail.com" class="contact-email">hiddencheststudios@gmail.com</a>
       </div>
-      <div class="contact-placeholder">
-        <div><p>Or reach us directly</p><a id="contact-email-cta" href="mailto:hiddencheststudios@gmail.com" class="nav-cta" style="font-size:12px">Send Us a Message</a></div>
+      <div>
+        <!-- Netlify detects this form at build time -->
+        <form id="contact-form" class="contact-form" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+          <input type="hidden" name="form-name" value="contact">
+          <p style="display:none"><label>Don't fill: <input name="bot-field"></label></p>
+          <div class="form-row">
+            <div class="form-field">
+              <label class="form-label" for="cf-name">Name</label>
+              <input class="form-input" type="text" id="cf-name" name="name" placeholder="Your name" required>
+            </div>
+            <div class="form-field">
+              <label class="form-label" for="cf-email">Email</label>
+              <input class="form-input" type="email" id="cf-email" name="email" placeholder="you@company.com" required>
+            </div>
+          </div>
+          <div class="form-field">
+            <label class="form-label" for="cf-subject">Subject</label>
+            <input class="form-input" type="text" id="cf-subject" name="subject" placeholder="Game dev, branded experience, app…" required>
+          </div>
+          <div class="form-field">
+            <label class="form-label" for="cf-message">Message</label>
+            <textarea class="form-textarea" id="cf-message" name="message" placeholder="Tell us about your project — scope, timeline, budget…" required></textarea>
+          </div>
+          <button type="submit" class="form-submit" id="form-submit-btn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            Send Message
+          </button>
+        </form>
+        <div class="form-success" id="form-success">
+          <div class="form-success-check">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E63228" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <div class="form-success-title">Message sent.</div>
+          <div class="form-success-sub">We'll get back to you within 1–2 business days.</div>
+        </div>
       </div>
     </div>
   </div>
@@ -510,38 +557,4 @@
         <h2>Come hang out<br><em>with us.</em></h2>
         <p class="community-p" id="community-p1">We're building a community to follow development of Midwest 90: Rapid City, participate in playtests, and be part of the Hidden Chest story.</p>
         <p class="community-p" id="community-p2">Get early alpha access, behind-the-scenes updates, and direct lines to the team.</p>
-        <a id="discord-invite-btn" href="https://discord.gg/H64hNB6gzt" target="_blank" class="discord-btn">
-          <svg width="18" height="14" viewBox="0 0 71 55" fill="white" xmlns="http://www.w3.org/2000/svg"><path d="M60.1 4.9A58.5 58.5 0 0 0 45.6.4a.2.2 0 0 0-.2.1 40.8 40.8 0 0 0-1.8 3.7 54 54 0 0 0-16.2 0A37.7 37.7 0 0 0 25.6.5a.2.2 0 0 0-.2-.1A58.3 58.3 0 0 0 10.9 4.9a.2.2 0 0 0-.1.1C1.6 18.1-.9 30.9.3 43.6a.2.2 0 0 0 .1.2 58.8 58.8 0 0 0 17.7 8.9.2.2 0 0 0 .3-.1 47.1 47.1 0 0 0 3.6-5.9.2.2 0 0 0-.1-.3 38.7 38.7 0 0 1-5.5-2.6.2.2 0 0 1 0-.4c.4-.3.7-.6 1.1-.8a.2.2 0 0 1 .2 0c11.5 5.3 24 5.3 35.4 0a.2.2 0 0 1 .2 0c.4.3.7.6 1.1.8a.2.2 0 0 1 0 .4 36.1 36.1 0 0 1-5.5 2.6.2.2 0 0 0-.1.3 47.1 47.1 0 0 0 3.6 5.9.2.2 0 0 0 .3.1 58.6 58.6 0 0 0 17.8-8.9.2.2 0 0 0 .1-.2c1.4-14.9-2.4-27.6-10-39.1a.2.2 0 0 0-.1 0zM23.7 36c-3.5 0-6.4-3.2-6.4-7.1s2.8-7.1 6.4-7.1c3.6 0 6.5 3.2 6.4 7.1 0 3.9-2.8 7.1-6.4 7.1zm23.6 0c-3.5 0-6.4-3.2-6.4-7.1s2.8-7.1 6.4-7.1c3.6 0 6.5 3.2 6.4 7.1 0 3.9-2.8 7.1-6.4 7.1z"/></svg>
-          Join Our Discord
-        </a>
-      </div>
-      <div class="discord-card">
-        <div class="discord-card-banner">
-          <svg class="discord-card-icon" viewBox="0 0 71 55" fill="white" xmlns="http://www.w3.org/2000/svg"><path d="M60.1 4.9A58.5 58.5 0 0 0 45.6.4a.2.2 0 0 0-.2.1 40.8 40.8 0 0 0-1.8 3.7 54 54 0 0 0-16.2 0A37.7 37.7 0 0 0 25.6.5a.2.2 0 0 0-.2-.1A58.3 58.3 0 0 0 10.9 4.9a.2.2 0 0 0-.1.1C1.6 18.1-.9 30.9.3 43.6a.2.2 0 0 0 .1.2 58.8 58.8 0 0 0 17.7 8.9.2.2 0 0 0 .3-.1 47.1 47.1 0 0 0 3.6-5.9.2.2 0 0 0-.1-.3 38.7 38.7 0 0 1-5.5-2.6.2.2 0 0 1 0-.4c.4-.3.7-.6 1.1-.8a.2.2 0 0 1 .2 0c11.5 5.3 24 5.3 35.4 0a.2.2 0 0 1 .2 0c.4.3.7.6 1.1.8a.2.2 0 0 1 0 .4 36.1 36.1 0 0 1-5.5 2.6.2.2 0 0 0-.1.3 47.1 47.1 0 0 0 3.6 5.9.2.2 0 0 0 .3.1 58.6 58.6 0 0 0 17.8-8.9.2.2 0 0 0 .1-.2c1.4-14.9-2.4-27.6-10-39.1a.2.2 0 0 0-.1 0zM23.7 36c-3.5 0-6.4-3.2-6.4-7.1s2.8-7.1 6.4-7.1c3.6 0 6.5 3.2 6.4 7.1 0 3.9-2.8 7.1-6.4 7.1zm23.6 0c-3.5 0-6.4-3.2-6.4-7.1s2.8-7.1 6.4-7.1c3.6 0 6.5 3.2 6.4 7.1 0 3.9-2.8 7.1-6.4 7.1z"/></svg>
-          <div>
-            <div class="discord-card-server">Midwest 90: Rapid City</div>
-            <div class="discord-card-tagline">Hidden Chest Studios Community</div>
-          </div>
-        </div>
-        <div class="discord-card-body">
-          <div class="discord-card-stats">
-            <div class="discord-stat">
-              <div class="discord-stat-dot discord-stat-dot--online"></div>
-              <span class="discord-stat-num" id="discord-online">—</span>
-              <span class="discord-stat-label">Online</span>
-            </div>
-            <div class="discord-stat">
-              <div class="discord-stat-dot discord-stat-dot--members"></div>
-              <span class="discord-stat-num" id="discord-members">—</span>
-              <span class="discord-stat-label">Members</span>
-            </div>
-          </div>
-          <div class="discord-channels">
-            <div class="discord-channel">general</div>
-            <div class="discord-channel">dev-updates</div>
-            <div class="discord-channel">playtest-feedback</div>
-            <div class="discord-channel">community</div>
-          </div>
-        </div>
-        <a id="discord-card-join-link" href="https://discord.gg/H64hNB6gzt" target="_blank" class="discord-card-join">
-          <svg width="20" height="16" viewBox="0 0 71 55" fill="white"><path d="M60.1 4.9A58.5 58.5 0 0 0 45.6.4a.2.2 0 0 0-.2.1 40.8 40.8 0 0 0-1.8 3.7 54 54 0 0 0-16.2 0A37.7 37.7 0 0 0 25.6.5a.2.2 0 0 0-.2-.1A58.3 58.3 0 0 0 10.9 4.9a.2.2 0 0 0-.1.1C1.6 18.1-.9 30.9.3 43.6a.2.2 0 0 0 .1.2 58.8 58.8 0 0 0 17.7 8.9.2.2 0 0 0 .3-.1 47.1 47.1 0 0 0 3.6-5.9.2.2 0 0 0-.1-.3 38.7 38.7 0 0 1-5.5-2.6.2.2 0 0 1 0-.4c.4-.3.7-.6 1.1-.8a.2.2 0 0 1 .2 0c11.5 5.3 24 5.3 35
+        <a id="discord-invite-btn" href="https://discord.gg/H
