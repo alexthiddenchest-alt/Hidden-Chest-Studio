@@ -119,8 +119,8 @@
     /* Flagship */
     .game-flagship { grid-column:span 2; position:relative; overflow:hidden; min-height:400px; background:#0d0d0d; display:flex; flex-direction:column; }
     .game-flagship-bg { position:absolute; inset:0; }
-    .game-flagship-bg img { width:100%; height:100%; object-fit:cover; opacity:.45; }
-    .game-flagship-overlay { position:absolute; inset:0; background:linear-gradient(to top,rgba(0,0,0,.92) 45%,rgba(0,0,0,.2) 100%); }
+    .game-flagship-bg img { width:100%; height:100%; object-fit:cover; opacity:.7; }
+    .game-flagship-overlay { position:absolute; inset:0; background:linear-gradient(to top,rgba(0,0,0,.85) 25%,rgba(0,0,0,.08) 100%); }
     .game-flagship-top { position:relative; z-index:3; padding:24px 24px 0; }
     .game-flagship-badge { display:inline-block; padding:4px 10px; background:var(--red); font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:.12em; text-transform:uppercase; color:#fff; }
     .game-flagship-content { position:relative; z-index:3; padding:24px; margin-top:auto; }
@@ -143,10 +143,12 @@
 
     .game-card { position:relative; overflow:hidden; }
     .game-card-bgimg { position:absolute; inset:0; z-index:0; }
-    .game-card-bgimg img { width:100%; height:100%; object-fit:cover; opacity:.35; }
-    .game-card-bgimg::after { content:''; position:absolute; inset:0; background:linear-gradient(to top, rgba(0,0,0,.88) 30%, rgba(0,0,0,.25) 100%); }
+    .game-card-bgimg img { width:100%; height:100%; object-fit:cover; opacity:.6; }
+    .game-card-bgimg::after { content:''; position:absolute; inset:0; background:linear-gradient(to top, rgba(0,0,0,.78) 15%, rgba(0,0,0,.08) 100%); }
     .game-card > *:not(.game-card-bgimg) { position:relative; z-index:1; }
     .game-card-logo { height:30px; width:auto; display:block; }
+    .game-card-bottom .game-card-name-big { margin-top:0; }
+    .game-card-bottom .game-card-sub { margin-bottom:14px; }
     /* FLAGSHIP */
     .flagship { position:relative; overflow:hidden; padding:88px 96px; border-top:1px solid var(--border); min-height:500px; }
     .flagship-bg { position:absolute; inset:0; z-index:0; }
@@ -341,9 +343,9 @@
       <!-- AirAsia — LOFINDER -->
       <div class="game-card" style="background:#0f0a0a;">
         <div class="game-card-bgimg"><img src="https://raw.githubusercontent.com/alexthiddenchest-alt/Hidden-Chest-Studio/main/images/projects/lofinder.png" alt="LOFINDER" onerror="this.parentNode.style.display='none'"></div>
-        <div class="game-card-name-big">AirAsia</div>
-        <div class="game-card-sub">Brand Gamification</div>
         <div class="game-card-bottom">
+          <div class="game-card-name-big">AirAsia</div>
+          <div class="game-card-sub">Brand Gamification</div>
           <div class="game-card-tags"><span class="game-card-tag">Enterprise</span><span class="game-card-tag">Brand</span></div>
           <div class="game-card-title">LOFINDER</div>
         </div>
@@ -352,9 +354,9 @@
       <!-- inQubi -->
       <div class="game-card" style="background:#0d0c08;">
         <div class="game-card-bgimg"><img src="https://raw.githubusercontent.com/alexthiddenchest-alt/Hidden-Chest-Studio/main/images/projects/inqubi-game.png" alt="inQubi" onerror="this.parentNode.style.display='none'"></div>
-        <div class="game-card-name-big" style="font-size:16px;margin-top:12px">inQubi</div>
-        <div class="game-card-sub">Mobile · Pet Game</div>
         <div class="game-card-bottom">
+          <div class="game-card-name-big" style="font-size:16px;margin-top:12px">inQubi</div>
+          <div class="game-card-sub">Mobile · Pet Game</div>
           <div class="game-card-tags"><span class="game-card-tag">Mobile</span></div>
         </div>
       </div>
@@ -362,9 +364,9 @@
       <!-- Tycoon Zone -->
       <div class="game-card" style="background:#0c0c0c;">
         <div class="game-card-bgimg"><img src="https://raw.githubusercontent.com/alexthiddenchest-alt/Hidden-Chest-Studio/main/images/projects/tycoon-zone-game.png" alt="Tycoon Zone" onerror="this.parentNode.style.display='none'"></div>
-        <div class="game-card-name-big" style="font-size:16px;margin-top:12px">Tycoon Zone</div>
-        <div class="game-card-sub">Mobile Crypto Game</div>
         <div class="game-card-bottom">
+          <div class="game-card-name-big" style="font-size:16px;margin-top:12px">Tycoon Zone</div>
+          <div class="game-card-sub">Mobile Crypto Game</div>
           <div class="game-card-tags"><span class="game-card-tag">Mobile</span><span class="game-card-tag">Crypto</span></div>
         </div>
       </div>
@@ -372,9 +374,9 @@
       <!-- Oasis Vanguard -->
       <div class="game-card" style="background:#0c0a14;">
         <div class="game-card-bgimg"><img src="https://raw.githubusercontent.com/alexthiddenchest-alt/Hidden-Chest-Studio/main/images/projects/oasis-vanguard.png" alt="Oasis Vanguard" onerror="this.parentNode.style.display='none'"></div>
-        <div class="game-card-name-big" style="font-size:16px;margin-top:12px">Oasis Vanguard</div>
-        <div class="game-card-sub">Web · Crypto Game</div>
         <div class="game-card-bottom">
+          <div class="game-card-name-big" style="font-size:16px;margin-top:12px">Oasis Vanguard</div>
+          <div class="game-card-sub">Web · Crypto Game</div>
           <div class="game-card-tags"><span class="game-card-tag">Web</span><span class="game-card-tag">Crypto</span></div>
         </div>
       </div>
