@@ -94,8 +94,8 @@
     .partners-cta { display:inline-flex; padding:10px 22px; border:1px solid rgba(255,255,255,.15); color:var(--cream); font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.1em; text-transform:uppercase; text-decoration:none; }
     .partners-cta:hover { background:rgba(255,255,255,.05); }
     .partners-sub { font-size:clamp(16px,1.35vw,21px); color:#d0cbc3; line-height:1.75; max-width:600px; margin-top:12px; }
-    .partners-grid { display:grid; grid-template-columns:repeat(3,1fr); border:1px solid rgba(255,255,255,.08); }
-    .partner-box { padding:clamp(24px,2.5vw,48px); border-right:1px solid rgba(255,255,255,.08); border-bottom:1px solid rgba(255,255,255,.08); display:flex; align-items:center; justify-content:center; height:clamp(200px,18vw,320px); }
+    .partners-grid { display:grid; grid-template-columns:repeat(3,1fr); }
+    .partner-box { padding:clamp(24px,2.5vw,48px); display:flex; align-items:center; justify-content:center; height:clamp(200px,18vw,320px); }
     .partner-box:nth-child(3n) { border-right:none; }
     .partner-box:nth-child(4),.partner-box:nth-child(5),.partner-box:nth-child(6) { border-bottom:none; }
     .partner-name { font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:#777; text-align:center; }
@@ -107,9 +107,8 @@
     .press-header { display:flex; align-items:flex-end; justify-content:space-between; margin-bottom:32px; }
     .press-kit-link { font-family:'JetBrains Mono',monospace; font-size:clamp(10px,.8vw,13px); letter-spacing:.1em; text-transform:uppercase; color:#888; text-decoration:none; }
     .press-kit-link:hover { color:var(--cream); }
-    .press-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:0; border:1px solid rgba(255,255,255,.06); }
-    .press-card { padding:clamp(24px,2.5vw,44px) clamp(20px,2vw,36px); border-right:1px solid rgba(255,255,255,.06); display:flex; align-items:center; justify-content:center; }
-    .press-card:last-child { border-right:none; }
+    .press-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:0; }
+    .press-card { padding:clamp(24px,2.5vw,44px) clamp(20px,2vw,36px); display:flex; align-items:center; justify-content:center; }
     .press-logo { max-height:clamp(28px,2.2vw,40px); width:auto; max-width:100%; filter:brightness(0) invert(1); opacity:.65; transition:opacity .2s; display:block; }
     .press-card:hover .press-logo { opacity:1; }
 
@@ -547,4 +546,4 @@
         <p class="community-p" id="community-p1">We're building a community to follow development of Midwest 90: Rapid City, participate in playtests, and be part of the Hidden Chest story.</p>
         <p class="community-p" id="community-p2">Get early alpha access, behind-the-scenes updates, and direct lines to the team.</p>
         <a id="discord-invite-btn" href="https://discord.gg/H64hNB6gzt" target="_blank" class="discord-btn">
-          <svg width="18" height="14" viewBox="0 0 71 55" fill="white" xmlns="http://www.w3.org/2000/svg"><path d="M60.1 4.9A58.5 58.5 0 0 0 45.6.4a.2.2 0 0 0-.2.1 40.8 40.8 0 0 0-1.8 3.7 54 54 0 0 0-16.2 0A37.7 37.7 0 0 0 25.6.5a.2.2 0 0 0-.2-.1A58.3 58.3 0 0 0 10.9 4.9a.2.2 0 0 0-.1.1C1.6 18.1-.9 30.9.3 43.6a.2.2 0 0 0 .1.2 58.8 58.8 0 0 0 17.7 8.9.2.2 0 0 0 .3-.1 47.1 47.1 0 0 0 3.6-5.9.2.2 0 0 0-.1-.3 38.7 38.7 0 0 1-5.5-2.6.2.2 0 0 1 0-.4c.4-.3.7-.6 1.1-.8a.2.2 0 0 1 .2 0c11.5 5.3 24 5.3 35.4 0a.2.2 0 0 1 .2 0c.4.3.7.6 1.1.8a.2.2 0 0 1 0 .4 36.1 36.1 0 0 1-5.5 2.6.2.2 0 0 0-.1.3 47.1 47.1
+          <svg width="18" height="14" viewBox="0 0 71 55" fill="white" xmlns="http://www.w3.org/2000/svg"><path d="M60.1 4.9A58.5 58.5 0 0 0 45.6.4a.2.2 0 0 0-.2.1 40.8 40.8 0 0 0-1.8 3.7 54 54 0 0 0-16.2 0A37.7 37.7 0 0 0 25.6.5a.2.2 0 0 0-.2-.1A58.3 58.3 0 0 0 10.9 4.9a.2.2 0 0 0-.1.1C1.6 18.1-.9 30.9.3 43.6a.2.2 0 0 0 .1.2 58.8 58.8 0 0 0 17.7 8.9.2.2 0 0 0 .3-.1 47.1 47.1 0 0 0 3.6-5.9.2.2 0 0 0-.1-.3 38.7 38.7 0 0 1-5.5-2.6.2.2 0 0 1 0-.4c.4-.3.7-.6 1.1-.8a.2.2 0 0 1 .2 0c11.5 5.3 24 5.3 35.4 0a.2.2 0 0 1 .2 0c.4.3.7.6 1.1.8a.2.2 0 0 1 0 .4 36.1 36.1 0 0 1-5.5 2.6.2.2 0 0 0-.1.3 47.1 47.1 0 0 0 3.6 5.9.2.2 0 0 0 .3.1 58.6 58.6 0 0 0 17.8-8.9.2.2 0 0 0 .1-.2c1.4-14.9-2.4-27.6-10-39.1a.2.2 0 0 0-.1 0zM23.7 36c-3.5 0-6.4-3.2-6.4-7.1s2.8-7.1 6.4-7.1c3.6 0 6.5 3.2 6.4 7.1 0 3.9-2.8 7.1-6.4 7.1zm23.6 0c-3.5 0-6.4-3.2-6.4-7.1s2.8-7.1 6.4-7.1c3.6 0 6.5 3.2 6.4
