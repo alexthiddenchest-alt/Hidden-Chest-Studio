@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Hidden Chest Studio</title>
-  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400&family=JetBrains+Mono:wght@400;500&family=Playfair+Display:ital,wght@1,400;1,700&family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -491,7 +490,7 @@
       </div>
       <div>
         <!-- Netlify detects this form at build time -->
-        <form id="contact-form" class="contact-form" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+        <form id="contact-form" class="contact-form" name="contact" method="POST">
           <input type="hidden" name="form-name" value="contact">
           <p style="display:none"><label>Don't fill: <input name="bot-field"></label></p>
           <div class="form-row">
@@ -622,7 +621,7 @@ fetch('https://discord.com/api/v9/invites/H64hNB6gzt?with_counts=true')
       document.getElementById('discord-members').textContent = d.approximate_member_count.toLocaleString();
   }).catch(function() {});
 
-fetch('/content.json')
+fetch('./content.json')
   .then(function(r) { return r.json(); })
   .then(function(c) {
 
@@ -764,19 +763,11 @@ if (contactForm) {
     var btn = document.getElementById('form-submit-btn');
     btn.disabled = true;
     btn.textContent = 'Sending…';
-    fetch('/', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: new URLSearchParams(new FormData(contactForm)).toString()
-    }).then(function() {
-      contactForm.style.display = 'none';
-      document.getElementById('form-success').style.display = 'flex';
-    }).catch(function() {
-      // fallback: let the browser handle it normally
-      btn.disabled = false;
-      btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg> Send Message';
-      contactForm.submit();
-    });
+    var fd = new FormData(contactForm);
+    var body = 'Name: ' + fd.get('name') + '\nEmail: ' + fd.get('email') + '\n\n' + fd.get('message');
+    window.open('mailto:hiddencheststudios@gmail.com?subject=' + encodeURIComponent(fd.get('subject')) + '&body=' + encodeURIComponent(body), '_blank');
+    contactForm.style.display = 'none';
+    document.getElementById('form-success').style.display = 'flex';
   });
 }
 </script>
