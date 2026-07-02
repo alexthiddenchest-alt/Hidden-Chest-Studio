@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Hidden Chest Studio</title>
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400&family=JetBrains+Mono:wght@400;500&family=Playfair+Display:ital,wght@1,400;1,700&family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -140,6 +141,13 @@
     .game-card-tag { font-family:'JetBrains Mono',monospace; font-size:clamp(9px,.75vw,12px); letter-spacing:.1em; text-transform:uppercase; color:#999; border:1px solid rgba(255,255,255,.15); padding:3px 8px; }
     .game-card-title { font-family:'Barlow',sans-serif; font-size:15px; font-weight:800; color:var(--cream); }
 
+
+    .game-card { position:relative; overflow:hidden; }
+    .game-card-bgimg { position:absolute; inset:0; z-index:0; }
+    .game-card-bgimg img { width:100%; height:100%; object-fit:cover; opacity:.35; }
+    .game-card-bgimg::after { content:''; position:absolute; inset:0; background:linear-gradient(to top, rgba(0,0,0,.88) 30%, rgba(0,0,0,.25) 100%); }
+    .game-card > *:not(.game-card-bgimg) { position:relative; z-index:1; }
+    .game-card-logo { height:30px; width:auto; display:block; }
     /* FLAGSHIP */
     .flagship { position:relative; overflow:hidden; padding:88px 96px; border-top:1px solid var(--border); min-height:500px; }
     .flagship-bg { position:absolute; inset:0; z-index:0; }
@@ -252,7 +260,7 @@
   <!-- NAV -->
   <nav>
     <div class="nav-logo">
-      <img src="https://raw.githubusercontent.com/alexthiddenchest-alt/Hidden-Chest-Studio/main/images/HIddenChestLogo.png" alt="Hidden Chest Studio" class="nav-logo-img">
+      <img src="images/HIddenChestLogo.png" alt="Hidden Chest Studio" class="nav-logo-img">
     </div>
     <div class="nav-links">
       <a href="#portfolio" class="nav-link">Games</a>
@@ -267,7 +275,7 @@
   <div class="hero">
     <div class="hero-video">
       <video autoplay muted loop playsinline>
-        <source src="https://raw.githubusercontent.com/alexthiddenchest-alt/Hidden-Chest-Studio/main/hero-bg2.mp4" type="video/mp4">
+        <source src="./hero-bg2.mp4" type="video/mp4">
       </video>
     </div>
     <div class="hero-overlay"></div>
@@ -319,21 +327,21 @@
     </div>
     <div class="games-bento">
 
-      <!-- Flagship: Midwest 90 -->
+      <!-- Flagship client project: Carcosa (Khazanah Nasional) -->
       <div class="game-flagship">
-        <div class="game-flagship-bg"><img id="flagship-thumb-img" src="https://img.youtube.com/vi/jbaT0JWABKA/maxresdefault.jpg" alt="Midwest 90: Rapid City"></div>
+        <div class="game-flagship-bg"><img id="carcosa-bg-img" src="https://raw.githubusercontent.com/alexthiddenchest-alt/Hidden-Chest-Studio/main/images/projects/carcosa.jpg" alt="Carcosa Seri Negara" onerror="this.style.display='none'"></div>
         <div class="game-flagship-overlay"></div>
-        <div class="game-flagship-top"><span class="game-flagship-badge">Flagship IP</span></div>
+        <div class="game-flagship-top"><span class="game-flagship-badge">Client Project</span></div>
         <div class="game-flagship-content">
-          <div class="game-platform">PC · Steam · Itch.io · In Development</div>
-          <h3><em id="bento-flagship-em">Midwest 90:</em><br><span id="bento-flagship-title">Rapid City</span></h3>
-          <p class="game-flagship-desc" id="bento-flagship-desc">A tycoon survival simulator set in a 1990s American midwest town. Free alpha available now.</p>
-          <a id="bento-flagship-cta" href="https://store.steampowered.com/app/1818480/Midwest_90_Rapid_City/" target="_blank" class="game-flagship-cta">Play Free →</a>
+          <div class="game-platform">Interactive Installation · Khazanah Nasional</div>
+          <h3><em>Carcosa</em><br><span>Seri Negara</span></h3>
+          <p class="game-flagship-desc">A bespoke interactive installation crafted for Khazanah Nasional at the historic Carcosa Seri Negara.</p>
         </div>
       </div>
 
-      <!-- AirAsia -->
+      <!-- AirAsia — LOFINDER -->
       <div class="game-card" style="background:#0f0a0a;">
+        <div class="game-card-bgimg"><img src="https://raw.githubusercontent.com/alexthiddenchest-alt/Hidden-Chest-Studio/main/images/projects/lofinder.jpg" alt="LOFINDER" onerror="this.parentNode.style.display='none'"></div>
         <svg class="game-card-icon" viewBox="0 0 30 30" fill="none">
           <path d="M15 3L27 9V21L15 27L3 21V9L15 3Z" stroke="#E63228" stroke-width="1.5"/>
           <path d="M15 9L21 12V18L15 21L9 18V12L15 9Z" stroke="#E63228" stroke-width="1" opacity=".45"/>
@@ -342,52 +350,47 @@
         <div class="game-card-sub">Brand Gamification</div>
         <div class="game-card-bottom">
           <div class="game-card-tags"><span class="game-card-tag">Enterprise</span><span class="game-card-tag">Brand</span></div>
-          <div class="game-card-title">AirAsia Gamification</div>
+          <div class="game-card-title">LOFINDER</div>
         </div>
       </div>
 
-      <!-- Khazanah -->
-      <div class="game-card" style="background:#070d14;">
-        <svg class="game-card-icon" viewBox="0 0 30 30" fill="none">
-          <rect x="7" y="13" width="16" height="12" rx="1" stroke="#4a7ab5" stroke-width="1.5"/>
-          <path d="M10 13V10a5 5 0 0110 0v3" stroke="#4a7ab5" stroke-width="1.5" stroke-linecap="round"/>
-          <circle cx="15" cy="19" r="1.5" fill="#4a7ab5" opacity=".6"/>
-        </svg>
-        <div class="game-card-name-big" style="font-size:16px;margin-top:12px">Khazanah Nasional</div>
-        <div class="game-card-sub">Interactive Installation</div>
+      <!-- inQubi -->
+      <div class="game-card" style="background:#0d0c08;">
+        <div class="game-card-bgimg"><img src="https://raw.githubusercontent.com/alexthiddenchest-alt/Hidden-Chest-Studio/main/images/projects/inqubi-game.jpg" alt="inQubi" onerror="this.parentNode.style.display='none'"></div>
+        <img class="game-card-logo" src="https://raw.githubusercontent.com/alexthiddenchest-alt/Hidden-Chest-Studio/main/images/inqubi.png" alt="inQubi logo">
+        <div class="game-card-name-big" style="font-size:16px;margin-top:12px">inQubi</div>
+        <div class="game-card-sub">Mobile · Pet Game</div>
         <div class="game-card-bottom">
-          <div class="game-card-tags"><span class="game-card-tag">Enterprise</span></div>
-          <div class="game-card-title">Khazanah Installation</div>
+          <div class="game-card-tags"><span class="game-card-tag">Mobile</span></div>
+          <div class="game-card-title">inQubi</div>
         </div>
       </div>
 
-      <!-- Mobile Title -->
+      <!-- Tycoon Zone -->
       <div class="game-card" style="background:#0c0c0c;">
-        <svg class="game-card-icon" viewBox="0 0 30 30" fill="none">
-          <rect x="9" y="4" width="12" height="22" rx="2" stroke="#888" stroke-width="1.5"/>
-          <rect x="11" y="6" width="8" height="14" fill="rgba(255,255,255,.04)" rx="1"/>
-          <circle cx="15" cy="23" r="1" fill="#666"/>
-        </svg>
-        <div class="game-card-name-big" style="font-size:16px;margin-top:12px">Mobile Title</div>
-        <div class="game-card-sub">iOS · Android</div>
+        <div class="game-card-bgimg"><img src="https://raw.githubusercontent.com/alexthiddenchest-alt/Hidden-Chest-Studio/main/images/projects/tycoon-zone-game.jpg" alt="Tycoon Zone" onerror="this.parentNode.style.display='none'"></div>
+        <img class="game-card-logo" src="https://raw.githubusercontent.com/alexthiddenchest-alt/Hidden-Chest-Studio/main/images/tycoon-zone-nobg.png" alt="Tycoon Zone logo">
+        <div class="game-card-name-big" style="font-size:16px;margin-top:12px">Tycoon Zone</div>
+        <div class="game-card-sub">Mobile Crypto Game</div>
         <div class="game-card-bottom">
-          <div class="game-card-tags"><span class="game-card-tag">Mobile</span><span class="game-card-tag">Client</span></div>
-          <div class="game-card-title">Client Mobile Title</div>
+          <div class="game-card-tags"><span class="game-card-tag">Mobile</span><span class="game-card-tag">Crypto</span></div>
+          <div class="game-card-title">Tycoon Zone</div>
         </div>
       </div>
 
-      <!-- AR/VR -->
+      <!-- Oasis Vanguard -->
       <div class="game-card" style="background:#0c0a14;">
+        <div class="game-card-bgimg"><img src="https://raw.githubusercontent.com/alexthiddenchest-alt/Hidden-Chest-Studio/main/images/projects/oasis-vanguard.jpg" alt="Oasis Vanguard" onerror="this.parentNode.style.display='none'"></div>
         <svg class="game-card-icon" viewBox="0 0 30 30" fill="none">
           <circle cx="15" cy="15" r="11" stroke="#7a5fc0" stroke-width="1.5"/>
           <ellipse cx="15" cy="15" rx="5" ry="11" stroke="#7a5fc0" stroke-width="1" opacity=".45"/>
           <line x1="4" y1="15" x2="26" y2="15" stroke="#7a5fc0" stroke-width="1" opacity=".45"/>
         </svg>
-        <div class="game-card-name-big" style="font-size:16px;margin-top:12px">AR/VR Experience</div>
-        <div class="game-card-sub">Immersive · Bespoke</div>
+        <div class="game-card-name-big" style="font-size:16px;margin-top:12px">Oasis Vanguard</div>
+        <div class="game-card-sub">Web · Crypto Game</div>
         <div class="game-card-bottom">
-          <div class="game-card-tags"><span class="game-card-tag">AR/VR</span></div>
-          <div class="game-card-title">AR/VR Installation</div>
+          <div class="game-card-tags"><span class="game-card-tag">Web</span><span class="game-card-tag">Crypto</span></div>
+          <div class="game-card-title">Oasis Vanguard</div>
         </div>
       </div>
 
@@ -405,12 +408,12 @@
       <a href="#contact" class="partners-cta">Work With Us →</a>
     </div>
     <div class="partners-grid">
-      <div class="partner-box"><img src="https://raw.githubusercontent.com/alexthiddenchest-alt/Hidden-Chest-Studio/main/images/airasia.webp" alt="AirAsia" class="partner-logo"></div>
-      <div class="partner-box"><img src="https://raw.githubusercontent.com/alexthiddenchest-alt/Hidden-Chest-Studio/main/images/khazanah.png" alt="Khazanah Nasional" class="partner-logo partner-logo--white"></div>
-      <div class="partner-box"><img src="https://raw.githubusercontent.com/alexthiddenchest-alt/Hidden-Chest-Studio/main/images/mdec.png" alt="MDEC" class="partner-logo"></div>
-      <div class="partner-box"><img src="https://raw.githubusercontent.com/alexthiddenchest-alt/Hidden-Chest-Studio/main/images/inqubi.png" alt="inQubi" class="partner-logo"></div>
-      <div class="partner-box"><img src="https://raw.githubusercontent.com/alexthiddenchest-alt/Hidden-Chest-Studio/main/images/project-oasis-nobg.png" alt="Project Oasis" class="partner-logo"></div>
-      <div class="partner-box"><img src="https://raw.githubusercontent.com/alexthiddenchest-alt/Hidden-Chest-Studio/main/images/tycoon-zone-nobg.png" alt="Tycoon Zone" class="partner-logo"></div>
+      <div class="partner-box"><img src="images/airasia.webp" alt="AirAsia" class="partner-logo"></div>
+      <div class="partner-box"><img src="images/khazanah.png" alt="Khazanah Nasional" class="partner-logo partner-logo--white"></div>
+      <div class="partner-box"><img src="images/mdec.png" alt="MDEC" class="partner-logo"></div>
+      <div class="partner-box"><img src="images/inqubi.png" alt="inQubi" class="partner-logo"></div>
+      <div class="partner-box"><img src="images/project-oasis-nobg.png" alt="Project Oasis" class="partner-logo"></div>
+      <div class="partner-box"><img src="images/tycoon-zone-nobg.png" alt="Tycoon Zone" class="partner-logo"></div>
     </div>
   </div>
 
@@ -425,19 +428,19 @@
     </div>
     <div class="press-grid">
       <div class="press-card">
-        <img src="https://raw.githubusercontent.com/alexthiddenchest-alt/Hidden-Chest-Studio/main/images/Press%20logo/The_Star_Malaysia_Logo.png" alt="The Star" class="press-logo">
+        <img src="images/Press%20logo/The_Star_Malaysia_Logo.png" alt="The Star" class="press-logo">
       </div>
       <div class="press-card">
-        <img src="https://raw.githubusercontent.com/alexthiddenchest-alt/Hidden-Chest-Studio/main/images/Press%20logo/Vulcan_Post_logo.png" alt="Vulcan Post" class="press-logo">
+        <img src="images/Press%20logo/Vulcan_Post_logo.png" alt="Vulcan Post" class="press-logo">
       </div>
       <div class="press-card">
-        <img src="https://raw.githubusercontent.com/alexthiddenchest-alt/Hidden-Chest-Studio/main/images/Press%20logo/Free_Malaysia_Today_logo.png" alt="Free Malaysia Today" class="press-logo">
+        <img src="images/Press%20logo/Free_Malaysia_Today_logo.png" alt="Free Malaysia Today" class="press-logo">
       </div>
       <div class="press-card">
-        <img src="https://raw.githubusercontent.com/alexthiddenchest-alt/Hidden-Chest-Studio/main/images/Press%20logo/TheSun.png" alt="The Sun" class="press-logo">
+        <img src="images/Press%20logo/TheSun.png" alt="The Sun" class="press-logo">
       </div>
       <div class="press-card">
-        <img src="https://raw.githubusercontent.com/alexthiddenchest-alt/Hidden-Chest-Studio/main/images/Press%20logo/IGN%20LOGO.png" alt="IGN" class="press-logo">
+        <img src="images/Press%20logo/IGN%20LOGO.png" alt="IGN" class="press-logo">
       </div>
     </div>
   </div>
@@ -499,7 +502,7 @@
       </div>
       <div>
         <!-- Netlify detects this form at build time -->
-        <form id="contact-form" class="contact-form" name="contact" method="POST">
+        <form id="contact-form" class="contact-form" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
           <input type="hidden" name="form-name" value="contact">
           <p style="display:none"><label>Don't fill: <input name="bot-field"></label></p>
           <div class="form-row">
@@ -588,7 +591,7 @@
   <!-- FOOTER -->
   <footer>
     <div class="footer-brand">
-      <img src="https://raw.githubusercontent.com/alexthiddenchest-alt/Hidden-Chest-Studio/main/images/HIddenChestLogo.png" alt="Hidden Chest Studio" class="footer-logo-img">
+      <img src="images/HIddenChestLogo.png" alt="Hidden Chest Studio" class="footer-logo-img">
     </div>
     <div class="footer-copy" id="footer-copyright">© 2024 Hidden Chest Studios (MY)</div>
     <div class="footer-links">
@@ -630,7 +633,7 @@ fetch('https://discord.com/api/v9/invites/H64hNB6gzt?with_counts=true')
       document.getElementById('discord-members').textContent = d.approximate_member_count.toLocaleString();
   }).catch(function() {});
 
-fetch('https://raw.githubusercontent.com/alexthiddenchest-alt/Hidden-Chest-Studio/main/content.json')
+fetch('/content.json')
   .then(function(r) { return r.json(); })
   .then(function(c) {
 
@@ -772,11 +775,19 @@ if (contactForm) {
     var btn = document.getElementById('form-submit-btn');
     btn.disabled = true;
     btn.textContent = 'Sending…';
-    var fd = new FormData(contactForm);
-    var body = 'Name: ' + fd.get('name') + '\nEmail: ' + fd.get('email') + '\n\n' + fd.get('message');
-    window.open('mailto:hiddencheststudios@gmail.com?subject=' + encodeURIComponent(fd.get('subject')) + '&body=' + encodeURIComponent(body), '_blank');
-    contactForm.style.display = 'none';
-    document.getElementById('form-success').style.display = 'flex';
+    fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams(new FormData(contactForm)).toString()
+    }).then(function() {
+      contactForm.style.display = 'none';
+      document.getElementById('form-success').style.display = 'flex';
+    }).catch(function() {
+      // fallback: let the browser handle it normally
+      btn.disabled = false;
+      btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg> Send Message';
+      contactForm.submit();
+    });
   });
 }
 </script>
