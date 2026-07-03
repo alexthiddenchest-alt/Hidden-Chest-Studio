@@ -619,7 +619,7 @@ fetch('https://discord.com/api/v9/invites/H64hNB6gzt?with_counts=true')
       document.getElementById('discord-members').textContent = d.approximate_member_count.toLocaleString();
   }).catch(function() {});
 
-fetch('./content.json')
+fetch('./content.json?v=' + Date.now(), { cache: 'no-store' })
   .then(function(r) { return r.json(); })
   .then(function(c) {
 
@@ -766,9 +766,4 @@ if (contactForm) {
     window.open('mailto:hiddencheststudios@gmail.com?subject=' + encodeURIComponent(fd.get('subject')) + '&body=' + encodeURIComponent(body), '_blank');
     contactForm.style.display = 'none';
     document.getElementById('form-success').style.display = 'flex';
-  });
-}
-</script>
-</body>
-</html>
-        
+  }
