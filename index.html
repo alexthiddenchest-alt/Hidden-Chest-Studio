@@ -3,10 +3,78 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hidden Chest Studio</title>
+  <title>Hidden Chest Studio | Game Development Studio, Kuala Lumpur</title>
+  <meta name="description" content="Malaysian game development studio in Kuala Lumpur building custom games, branded minigames, and interactive experiences for AirAsia and Khazanah Nasional.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://www.hiddenchest.studio/">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Hidden Chest Studio | Game Development Studio, Kuala Lumpur">
+  <meta property="og:description" content="Malaysian game development studio in Kuala Lumpur building custom games, branded minigames, and interactive experiences for AirAsia and Khazanah Nasional.">
+  <meta property="og:image" content="https://www.hiddenchest.studio/images/HIddenChestLogo.png">
+  <meta property="og:url" content="https://www.hiddenchest.studio/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Hidden Chest Studio">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Hidden Chest Studio | Game Development Studio, Kuala Lumpur">
+  <meta name="twitter:description" content="Malaysian game development studio in Kuala Lumpur building custom games, branded minigames, and interactive experiences for AirAsia and Khazanah Nasional.">
+  <meta name="twitter:image" content="https://www.hiddenchest.studio/images/HIddenChestLogo.png">
+
+  <meta name="theme-color" content="#0C0C0C">
+
+  <link rel="icon" href="images/HIddenChestLogo.png">
+  <link rel="apple-touch-icon" href="images/HIddenChestLogo.png">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400&family=JetBrains+Mono:wght@400;500&family=Playfair+Display:ital,wght@1,400;1,700&family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400&family=JetBrains+Mono:wght@400;500&family=Playfair+Display:ital,wght@1,400;1,700&display=swap" rel="stylesheet">
+
+  <!-- JSON-LD: Organization -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "@id": "https://www.hiddenchest.studio/#organization",
+    "name": "Hidden Chest Studio",
+    "legalName": "HIDDEN CHEST STUDIO SDN. BHD.",
+    "url": "https://www.hiddenchest.studio/",
+    "logo": "https://www.hiddenchest.studio/images/HIddenChestLogo.png",
+    "image": "https://www.hiddenchest.studio/images/HIddenChestLogo.png",
+    "description": "Hidden Chest Studio is a Kuala Lumpur-based game development and gamification agency building branded minigames, interactive brand experiences, and custom games for enterprises and game studios.",
+    "foundingDate": "2020",
+    "telephone": "+60 17-389 4937",
+    "email": "hiddencheststudios@gmail.com",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Kuala Lumpur",
+      "addressCountry": "MY"
+    },
+    "sameAs": [
+      "https://discord.gg/H64hNB6gzt",
+      "https://store.steampowered.com/app/1818480/Midwest_90_Rapid_City/"
+    ]
+  }
+  </script>
+
+  <!-- JSON-LD: VideoGame -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "VideoGame",
+    "name": "Midwest 90: Rapid City",
+    "url": "https://store.steampowered.com/app/1818480/Midwest_90_Rapid_City/",
+    "description": "Tycoon survival simulator. Build a city in the American Midwest during the 1990s, manage resources, survive harsh winters, and grow your settlement into a thriving community.",
+    "genre": "Simulation",
+    "gamePlatform": ["PC", "Steam"],
+    "author": {
+      "@type": "Organization",
+      "name": "Hidden Chest Studio"
+    }
+  }
+  </script>
+
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
@@ -87,6 +155,8 @@
     .svc-desc { font-size:clamp(16px,1.35vw,21px); color:#d0cbc3; line-height:1.75; margin-bottom:28px; }
     .svc-tags { display:flex; gap:8px; flex-wrap:wrap; }
     .svc-tag { display:inline-block; font-family:'JetBrains Mono',monospace; font-size:clamp(9px,.75vw,12px); letter-spacing:.08em; text-transform:uppercase; color:#aaa; border:1px solid rgba(255,255,255,.2); padding:5px 12px; }
+    .svc-more { display:inline-block; margin-top:14px; font-family:'JetBrains Mono',monospace; font-size:clamp(10px,.8vw,13px); letter-spacing:.1em; text-transform:uppercase; color:#999; text-decoration:none; }
+    .svc-more:hover { color:var(--cream); }
 
     /* TRUSTED BY */
     .partners-header { display:flex; align-items:flex-end; justify-content:space-between; margin-bottom:36px; }
@@ -261,7 +331,7 @@
   <!-- NAV -->
   <nav>
     <div class="nav-logo">
-      <img src="images/HIddenChestLogo.png" alt="Hidden Chest Studio" class="nav-logo-img">
+      <img src="images/HIddenChestLogo.png" alt="Hidden Chest Studio" class="nav-logo-img" width="254" height="90">
     </div>
     <div class="nav-links">
       <a href="#portfolio" class="nav-link">Games</a>
@@ -272,8 +342,10 @@
     </div>
   </nav>
 
+  <main>
+
   <!-- HERO -->
-  <div class="hero">
+  <section class="hero">
     <div class="hero-video">
       <video autoplay muted loop playsinline>
         <source src="./hero-bg2.mp4" type="video/mp4">
@@ -296,10 +368,10 @@
         <div><div class="stat-label" id="hero-stat4-label">Flagship IP</div><div class="stat-val" id="hero-stat4-val" style="font-size:14px;color:#666;font-style:italic">Midwest 90: Rapid City</div></div>
       </div>
     </div>
-  </div>
+  </section>
 
   <!-- 01 WHO WE ARE -->
-  <div class="section" id="about">
+  <section class="section" id="about">
     <div class="about-grid">
       <div class="about-left">
         <div class="sec-eyebrow"><div class="sec-line"></div><span class="sec-tag">01 / Who We Are</span></div>
@@ -315,22 +387,21 @@
       <div><div class="about-stat-num" id="about-stat2-num">6</div><div class="about-stat-label" id="about-stat2-label">Industry Awards</div></div>
       <div><div class="about-stat-num" id="about-stat3-num">3</div><div class="about-stat-label" id="about-stat3-label">Co-Founders</div></div>
     </div>
-  </div>
+  </section>
 
   <!-- 02 PORTFOLIO -->
-  <div class="section" id="portfolio">
+  <section class="section" id="portfolio">
     <div class="games-header">
       <div>
         <div class="sec-eyebrow"><div class="sec-line"></div><span class="sec-tag">02 / Games &amp; Projects</span></div>
         <h2 class="sec-h2" id="games-h2">What We've <em>Built.</em></h2>
       </div>
-      <a href="#" class="games-all">All projects →</a>
     </div>
     <div class="games-bento">
 
       <!-- Flagship client project: Carcosa (Khazanah Nasional) -->
       <div class="game-flagship">
-        <div class="game-flagship-bg"><img id="carcosa-bg-img" src="https://raw.githubusercontent.com/alexthiddenchest-alt/Hidden-Chest-Studio/main/images/projects/carcosa.png" alt="Carcosa Seri Negara" onerror="this.style.display='none'"></div>
+        <div class="game-flagship-bg"><img id="carcosa-bg-img" src="images/projects/carcosa.png" alt="Interactive installation designed by Hidden Chest Studio for Khazanah Nasional at the historic Carcosa Seri Negara" width="1247" height="824" loading="lazy"></div>
         <div class="game-flagship-overlay"></div>
         <div class="game-flagship-top"><span class="game-flagship-badge">Client Project</span></div>
         <div class="game-flagship-content">
@@ -342,20 +413,20 @@
 
       <!-- AirAsia — LOFINDER -->
       <div class="game-card" style="background:#0f0a0a;">
-        <div class="game-card-bgimg"><img src="https://raw.githubusercontent.com/alexthiddenchest-alt/Hidden-Chest-Studio/main/images/projects/lofinder.png" alt="LOFINDER" onerror="this.parentNode.style.display='none'"></div>
+        <div class="game-card-bgimg"><img src="images/projects/lofinder.png" alt="LOFINDER, an AirAsia brand gamification minigame developed by Hidden Chest Studio" width="1691" height="915" loading="lazy"></div>
         <div class="game-card-bottom">
-          <div class="game-card-name-big">AirAsia</div>
+          <h3 class="game-card-name-big">AirAsia</h3>
           <div class="game-card-sub">Brand Gamification</div>
           <div class="game-card-tags"><span class="game-card-tag">Enterprise</span><span class="game-card-tag">Brand</span></div>
-          <div class="game-card-title">LOFINDER</div>
+          <h4 class="game-card-title">LOFINDER</h4>
         </div>
       </div>
 
       <!-- inQubi -->
       <div class="game-card" style="background:#0d0c08;">
-        <div class="game-card-bgimg"><img src="https://raw.githubusercontent.com/alexthiddenchest-alt/Hidden-Chest-Studio/main/images/projects/inqubi-game.png" alt="inQubi" onerror="this.parentNode.style.display='none'"></div>
+        <div class="game-card-bgimg"><img src="images/projects/inqubi-game.png" alt="inQubi, a mobile pet game developed by Hidden Chest Studio" width="1660" height="861" loading="lazy"></div>
         <div class="game-card-bottom">
-          <div class="game-card-name-big" style="font-size:16px;margin-top:12px">inQubi</div>
+          <h3 class="game-card-name-big" style="font-size:16px;margin-top:12px">inQubi</h3>
           <div class="game-card-sub">Mobile · Pet Game</div>
           <div class="game-card-tags"><span class="game-card-tag">Mobile</span></div>
         </div>
@@ -363,9 +434,9 @@
 
       <!-- Tycoon Zone -->
       <div class="game-card" style="background:#0c0c0c;">
-        <div class="game-card-bgimg"><img src="https://raw.githubusercontent.com/alexthiddenchest-alt/Hidden-Chest-Studio/main/images/projects/tycoon-zone-game.png" alt="Tycoon Zone" onerror="this.parentNode.style.display='none'"></div>
+        <div class="game-card-bgimg"><img src="images/projects/tycoon-zone-game.png" alt="Tycoon Zone, a mobile crypto game developed by Hidden Chest Studio" width="440" height="217" loading="lazy"></div>
         <div class="game-card-bottom">
-          <div class="game-card-name-big" style="font-size:16px;margin-top:12px">Tycoon Zone</div>
+          <h3 class="game-card-name-big" style="font-size:16px;margin-top:12px">Tycoon Zone</h3>
           <div class="game-card-sub">Mobile Crypto Game</div>
           <div class="game-card-tags"><span class="game-card-tag">Mobile</span><span class="game-card-tag">Crypto</span></div>
         </div>
@@ -373,19 +444,19 @@
 
       <!-- Oasis Vanguard -->
       <div class="game-card" style="background:#0c0a14;">
-        <div class="game-card-bgimg"><img src="https://raw.githubusercontent.com/alexthiddenchest-alt/Hidden-Chest-Studio/main/images/projects/oasis-vanguard.png" alt="Oasis Vanguard" onerror="this.parentNode.style.display='none'"></div>
+        <div class="game-card-bgimg"><img src="images/projects/oasis-vanguard.png" alt="Oasis Vanguard, a web-based crypto game developed by Hidden Chest Studio" width="435" height="211" loading="lazy"></div>
         <div class="game-card-bottom">
-          <div class="game-card-name-big" style="font-size:16px;margin-top:12px">Oasis Vanguard</div>
+          <h3 class="game-card-name-big" style="font-size:16px;margin-top:12px">Oasis Vanguard</h3>
           <div class="game-card-sub">Web · Crypto Game</div>
           <div class="game-card-tags"><span class="game-card-tag">Web</span><span class="game-card-tag">Crypto</span></div>
         </div>
       </div>
 
     </div>
-  </div>
+  </section>
 
   <!-- 03 TRUSTED BY -->
-  <div class="section" id="collaborators">
+  <section class="section" id="collaborators">
     <div class="partners-header">
       <div>
         <div class="sec-eyebrow"><div class="sec-line"></div><span class="sec-tag">03 / Collaborators</span></div>
@@ -395,90 +466,98 @@
       <a href="#contact" class="partners-cta">Work With Us →</a>
     </div>
     <div class="partners-grid">
-      <div class="partner-box"><img src="images/airasia.webp" alt="AirAsia" class="partner-logo"></div>
-      <div class="partner-box"><img src="images/khazanah.png" alt="Khazanah Nasional" class="partner-logo partner-logo--white"></div>
-      <div class="partner-box"><img src="images/mdec.png" alt="MDEC" class="partner-logo"></div>
-      <div class="partner-box"><img src="images/inqubi.png" alt="inQubi" class="partner-logo"></div>
-      <div class="partner-box"><img src="images/project-oasis-nobg.png" alt="Project Oasis" class="partner-logo"></div>
-      <div class="partner-box"><img src="images/tycoon-zone-nobg.png" alt="Tycoon Zone" class="partner-logo"></div>
+      <div class="partner-box"><img src="images/airasia.webp" alt="AirAsia logo, a Hidden Chest Studio client" class="partner-logo" width="293" height="292" loading="lazy"></div>
+      <div class="partner-box"><img src="images/khazanah.png" alt="Khazanah Nasional logo, a Hidden Chest Studio client" class="partner-logo partner-logo--white" width="300" height="89" loading="lazy"></div>
+      <div class="partner-box"><img src="images/mdec.png" alt="MDEC logo, a Hidden Chest Studio partner" class="partner-logo" width="1920" height="399" loading="lazy"></div>
+      <div class="partner-box"><img src="images/inqubi.png" alt="inQubi game logo, developed by Hidden Chest Studio" class="partner-logo" width="446" height="279" loading="lazy"></div>
+      <div class="partner-box"><img src="images/project-oasis-nobg.png" alt="Oasis Vanguard game logo, developed by Hidden Chest Studio" class="partner-logo" width="165" height="235" loading="lazy"></div>
+      <div class="partner-box"><img src="images/tycoon-zone-nobg.png" alt="Tycoon Zone game logo, developed by Hidden Chest Studio" class="partner-logo" width="160" height="228" loading="lazy"></div>
     </div>
-  </div>
+  </section>
 
   <!-- 04 PRESS -->
-  <div class="section" id="press">
+  <section class="section" id="press">
     <div class="press-header">
       <div>
         <div class="sec-eyebrow"><div class="sec-line"></div><span class="sec-tag">04 / Press</span></div>
         <h2 class="sec-h2" id="press-h2">As Seen In</h2>
       </div>
-      <a href="#" class="press-kit-link">Press kit →</a>
     </div>
     <div class="press-grid">
       <div class="press-card">
-        <img src="images/Press%20logo/The_Star_Malaysia_Logo.png" alt="The Star" class="press-logo">
+        <img src="images/Press%20logo/The_Star_Malaysia_Logo.png" alt="The Star Malaysia logo, press coverage of Hidden Chest Studio" class="press-logo" width="1280" height="429" loading="lazy">
       </div>
       <div class="press-card">
-        <img src="images/Press%20logo/Vulcan_Post_logo.png" alt="Vulcan Post" class="press-logo">
+        <img src="images/Press%20logo/Vulcan_Post_logo.png" alt="Vulcan Post logo, press coverage of Hidden Chest Studio" class="press-logo" width="448" height="118" loading="lazy">
       </div>
       <div class="press-card">
-        <img src="images/Press%20logo/Free_Malaysia_Today_logo.png" alt="Free Malaysia Today" class="press-logo">
+        <img src="images/Press%20logo/Free_Malaysia_Today_logo.png" alt="Free Malaysia Today logo, press coverage of Hidden Chest Studio" class="press-logo" width="1280" height="539" loading="lazy">
       </div>
       <div class="press-card">
-        <img src="images/Press%20logo/TheSun.png" alt="The Sun" class="press-logo">
+        <img src="images/Press%20logo/TheSun.png" alt="The Sun logo, press coverage of Hidden Chest Studio" class="press-logo" width="1280" height="595" loading="lazy">
       </div>
       <div class="press-card">
-        <img src="images/Press%20logo/IGN%20LOGO.png" alt="IGN" class="press-logo">
+        <img src="images/Press%20logo/IGN%20LOGO.png" alt="IGN logo, press coverage of Hidden Chest Studio" class="press-logo" width="800" height="294" loading="lazy">
       </div>
     </div>
-  </div>
+  </section>
 
   <!-- 05 SERVICES -->
-  <div class="section" id="services">
+  <section class="section" id="services">
     <div class="sec-eyebrow"><div class="sec-line"></div><span class="sec-tag">05 / Services</span></div>
     <h2 class="sec-h2" id="services-h2">What We Build</h2>
     <div class="services-grid">
       <div class="svc-card">
         <div>
           <div class="svc-num" id="svc1-num">01 · Full Service</div>
-          <div class="svc-title" id="svc1-title">Game Dev Support</div>
+          <h3 class="svc-title" id="svc1-title">Game Dev Support</h3>
           <p class="svc-desc" id="svc1-desc">Programming, 2D/3D art and animation support for teams that need extra hands. We slot into your pipeline at any stage, from prototyping to production.</p>
         </div>
-        <div class="svc-tags" id="svc1-tags"><span class="svc-tag">PC · Steam</span><span class="svc-tag">Mobile</span></div>
+        <div>
+          <div class="svc-tags" id="svc1-tags"><span class="svc-tag">PC · Steam</span><span class="svc-tag">Mobile</span></div>
+          <a href="services/game-development.html" class="svc-more">Learn more →</a>
+        </div>
       </div>
       <div class="svc-card">
         <div>
           <div class="svc-num" id="svc2-num">02 · Brand &amp; Enterprise</div>
-          <div class="svc-title" id="svc2-title">Interactive Experiences</div>
+          <h3 class="svc-title" id="svc2-title">Interactive Experiences</h3>
           <p class="svc-desc" id="svc2-desc">Gamified brand activations, AR/VR installations and custom apps that connect your audience on an emotional level.</p>
         </div>
-        <div class="svc-tags" id="svc2-tags"><span class="svc-tag">AR / VR</span><span class="svc-tag">Brand Events</span></div>
+        <div>
+          <div class="svc-tags" id="svc2-tags"><span class="svc-tag">AR / VR</span><span class="svc-tag">Brand Events</span></div>
+          <a href="services/gamification.html" class="svc-more">Learn more →</a>
+        </div>
       </div>
       <div class="svc-card">
         <div>
           <div class="svc-num" id="svc3-num">03 · Dev Support</div>
-          <div class="svc-title" id="svc3-title">Custom App/Game Dev</div>
+          <h3 class="svc-title" id="svc3-title">Custom App/Game Dev</h3>
           <p class="svc-desc" id="svc3-desc">Game-grade technology applied to software products. iOS, Android and web apps delivered end-to-end.</p>
         </div>
-        <div class="svc-tags" id="svc3-tags"><span class="svc-tag">iOS / Android</span><span class="svc-tag">Web</span></div>
+        <div>
+          <div class="svc-tags" id="svc3-tags"><span class="svc-tag">iOS / Android</span><span class="svc-tag">Web</span></div>
+          <a href="services/branded-minigames.html" class="svc-more">Learn more →</a>
+        </div>
       </div>
     </div>
-  </div>
+  </section>
 
   <!-- 06 FLAGSHIP -->
-  <div class="flagship" id="flagship">
-    <div class="flagship-bg"><img id="flagship-bg-img" src="https://img.youtube.com/vi/jbaT0JWABKA/maxresdefault.jpg" alt="Midwest 90: Rapid City"></div>
+  <section class="flagship" id="flagship">
+    <div class="flagship-bg"><img id="flagship-bg-img" src="https://img.youtube.com/vi/jbaT0JWABKA/maxresdefault.jpg" alt="Midwest 90: Rapid City, Hidden Chest Studio's flagship tycoon survival simulator" width="1280" height="720" loading="lazy"></div>
     <div class="flagship-overlay"></div>
     <div class="flagship-inner">
       <div class="sec-eyebrow" style="margin-bottom:20px"><div class="sec-line"></div><span class="sec-tag">06 / Flagship</span></div>
       <div class="flagship-subtitle" id="flagship-feature-subtitle">Flagship IP · In Development</div>
       <h2><em id="flagship-feature-em">Midwest 90:</em><br><span id="flagship-feature-title">Rapid City</span></h2>
       <p class="flagship-desc" id="flagship-feature-desc">Tycoon survival simulator. Build a city in the American Midwest during the 1990s. Manage resources, survive harsh winters, and grow your settlement into a thriving community. Wishlist on Steam.</p>
-      <a id="flagship-feature-cta" href="https://store.steampowered.com/app/1818480/Midwest_90_Rapid_City/" target="_blank" class="flagship-cta">Wishlist on Steam →</a>
+      <a id="flagship-feature-cta" href="https://store.steampowered.com/app/1818480/Midwest_90_Rapid_City/" target="_blank" rel="noopener noreferrer" class="flagship-cta">Wishlist on Steam →</a>
     </div>
-  </div>
+  </section>
 
   <!-- 07 REACH OUT -->
-  <div class="contact" id="contact">
+  <section class="contact" id="contact">
     <div class="sec-eyebrow"><div class="sec-line"></div><span class="sec-tag">07 / Reach Out</span></div>
     <div class="contact-grid">
       <div>
@@ -523,17 +602,17 @@
         </div>
       </div>
     </div>
-  </div>
+  </section>
 
   <!-- 07 COMMUNITY -->
-  <div class="community" id="community">
+  <section class="community" id="community">
     <div class="sec-eyebrow"><div class="sec-line"></div><span class="sec-tag">07 / Community</span></div>
     <div class="community-grid">
       <div>
         <h2 id="community-h2">Come hang out<br><em>with us.</em></h2>
         <p class="community-p" id="community-p1">We're building a community to follow development of Midwest 90: Rapid City, participate in playtests, and be part of the Hidden Chest story.</p>
         <p class="community-p" id="community-p2">Get early alpha access, behind-the-scenes updates, and direct lines to the team.</p>
-        <a id="discord-invite-btn" href="https://discord.gg/H64hNB6gzt" target="_blank" class="discord-btn">
+        <a id="discord-invite-btn" href="https://discord.gg/H64hNB6gzt" target="_blank" rel="noopener noreferrer" class="discord-btn">
           <svg width="18" height="14" viewBox="0 0 71 55" fill="white" xmlns="http://www.w3.org/2000/svg"><path d="M60.1 4.9A58.5 58.5 0 0 0 45.6.4a.2.2 0 0 0-.2.1 40.8 40.8 0 0 0-1.8 3.7 54 54 0 0 0-16.2 0A37.7 37.7 0 0 0 25.6.5a.2.2 0 0 0-.2-.1A58.3 58.3 0 0 0 10.9 4.9a.2.2 0 0 0-.1.1C1.6 18.1-.9 30.9.3 43.6a.2.2 0 0 0 .1.2 58.8 58.8 0 0 0 17.7 8.9.2.2 0 0 0 .3-.1 47.1 47.1 0 0 0 3.6-5.9.2.2 0 0 0-.1-.3 38.7 38.7 0 0 1-5.5-2.6.2.2 0 0 1 0-.4c.4-.3.7-.6 1.1-.8a.2.2 0 0 1 .2 0c11.5 5.3 24 5.3 35.4 0a.2.2 0 0 1 .2 0c.4.3.7.6 1.1.8a.2.2 0 0 1 0 .4 36.1 36.1 0 0 1-5.5 2.6.2.2 0 0 0-.1.3 47.1 47.1 0 0 0 3.6 5.9.2.2 0 0 0 .3.1 58.6 58.6 0 0 0 17.8-8.9.2.2 0 0 0 .1-.2c1.4-14.9-2.4-27.6-10-39.1a.2.2 0 0 0-.1 0zM23.7 36c-3.5 0-6.4-3.2-6.4-7.1s2.8-7.1 6.4-7.1c3.6 0 6.5 3.2 6.4 7.1 0 3.9-2.8 7.1-6.4 7.1zm23.6 0c-3.5 0-6.4-3.2-6.4-7.1s2.8-7.1 6.4-7.1c3.6 0 6.5 3.2 6.4 7.1 0 3.9-2.8 7.1-6.4 7.1z"/></svg>
           Join Our Discord
         </a>
@@ -566,24 +645,30 @@
             <div class="discord-channel">community</div>
           </div>
         </div>
-        <a id="discord-card-join-link" href="https://discord.gg/H64hNB6gzt" target="_blank" class="discord-card-join">
+        <a id="discord-card-join-link" href="https://discord.gg/H64hNB6gzt" target="_blank" rel="noopener noreferrer" class="discord-card-join">
           <svg width="20" height="16" viewBox="0 0 71 55" fill="white"><path d="M60.1 4.9A58.5 58.5 0 0 0 45.6.4a.2.2 0 0 0-.2.1 40.8 40.8 0 0 0-1.8 3.7 54 54 0 0 0-16.2 0A37.7 37.7 0 0 0 25.6.5a.2.2 0 0 0-.2-.1A58.3 58.3 0 0 0 10.9 4.9a.2.2 0 0 0-.1.1C1.6 18.1-.9 30.9.3 43.6a.2.2 0 0 0 .1.2 58.8 58.8 0 0 0 17.7 8.9.2.2 0 0 0 .3-.1 47.1 47.1 0 0 0 3.6-5.9.2.2 0 0 0-.1-.3 38.7 38.7 0 0 1-5.5-2.6.2.2 0 0 1 0-.4c.4-.3.7-.6 1.1-.8a.2.2 0 0 1 .2 0c11.5 5.3 24 5.3 35.4 0a.2.2 0 0 1 .2 0c.4.3.7.6 1.1.8a.2.2 0 0 1 0 .4 36.1 36.1 0 0 1-5.5 2.6.2.2 0 0 0-.1.3 47.1 47.1 0 0 0 3.6 5.9.2.2 0 0 0 .3.1 58.6 58.6 0 0 0 17.8-8.9.2.2 0 0 0 .1-.2c1.4-14.9-2.4-27.6-10-39.1a.2.2 0 0 0-.1 0zM23.7 36c-3.5 0-6.4-3.2-6.4-7.1s2.8-7.1 6.4-7.1c3.6 0 6.5 3.2 6.4 7.1 0 3.9-2.8 7.1-6.4 7.1zm23.6 0c-3.5 0-6.4-3.2-6.4-7.1s2.8-7.1 6.4-7.1c3.6 0 6.5 3.2 6.4 7.1 0 3.9-2.8 7.1-6.4 7.1z"/></svg>
           Join the Server
         </a>
       </div>
     </div>
-  </div>
+  </section>
+
+  </main>
 
   <!-- FOOTER -->
   <footer>
     <div class="footer-brand">
-      <img src="images/HIddenChestLogo.png" alt="Hidden Chest Studio" class="footer-logo-img">
+      <img src="images/HIddenChestLogo.png" alt="Hidden Chest Studio" class="footer-logo-img" width="254" height="90" loading="lazy">
     </div>
     <div class="footer-copy" id="footer-copyright">HIDDEN CHEST STUDIO SDN. BHD. 202001029555(1385875-P)</div>
     <div class="footer-links">
-      <a id="footer-youtube" href="#" class="footer-link">YouTube</a>
-      <a id="footer-discord" href="https://discord.gg/" target="_blank" class="footer-link">Discord</a>
-      <a id="footer-linkedin" href="#" class="footer-link">LinkedIn</a>
+      <a id="footer-youtube" href="https://www.youtube.com/@hiddencheststudios" target="_blank" rel="noopener noreferrer" class="footer-link">YouTube</a>
+      <a id="footer-discord" href="https://discord.gg/H64hNB6gzt" target="_blank" rel="noopener noreferrer" class="footer-link">Discord</a>
+      <a href="services/branded-minigames.html" class="footer-link">Branded Minigames</a>
+      <a href="services/gamification.html" class="footer-link">Gamification</a>
+      <a href="services/game-development.html" class="footer-link">Game Development</a>
+      <a href="blog/branded-minigames-for-marketing.html" class="footer-link">Minigames for Marketing</a>
+      <a href="blog/what-is-gamification-brand-activation.html" class="footer-link">What Is Gamification?</a>
     </div>
     <span class="footer-location" id="footer-location">Kuala Lumpur, MY</span>
   </footer>
@@ -747,8 +832,6 @@ fetch('./content.json?v=' + Date.now(), { cache: 'no-store' })
     }
     var ytEl = document.getElementById('footer-youtube');
     if (ytEl && c.youtubeLink) ytEl.href = c.youtubeLink;
-    var liEl = document.getElementById('footer-linkedin');
-    if (liEl && c.linkedinLink) liEl.href = c.linkedinLink;
 
   })
   .catch(function() { /* fail silently — page uses HTML defaults */ });
