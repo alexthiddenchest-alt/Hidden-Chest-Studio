@@ -53,7 +53,8 @@
     },
     "sameAs": [
       "https://discord.gg/H64hNB6gzt",
-      "https://store.steampowered.com/app/1818480/Midwest_90_Rapid_City/"
+      "https://store.steampowered.com/app/1818480/Midwest_90_Rapid_City/",
+      "https://www.linkedin.com/company/hidden-chest-studio/"
     ]
   }
   </script>
@@ -664,6 +665,7 @@
     <div class="footer-links">
       <a id="footer-youtube" href="https://www.youtube.com/@hiddencheststudios" target="_blank" rel="noopener noreferrer" class="footer-link">YouTube</a>
       <a id="footer-discord" href="https://discord.gg/H64hNB6gzt" target="_blank" rel="noopener noreferrer" class="footer-link">Discord</a>
+      <a id="footer-linkedin" href="https://www.linkedin.com/company/hidden-chest-studio/" target="_blank" rel="noopener noreferrer" class="footer-link">LinkedIn</a>
       <a href="services/branded-minigames.html" class="footer-link">Branded Minigames</a>
       <a href="services/gamification.html" class="footer-link">Gamification</a>
       <a href="services/game-development.html" class="footer-link">Game Development</a>
@@ -832,6 +834,8 @@ fetch('./content.json?v=' + Date.now(), { cache: 'no-store' })
     }
     var ytEl = document.getElementById('footer-youtube');
     if (ytEl && c.youtubeLink) ytEl.href = c.youtubeLink;
+    var liEl = document.getElementById('footer-linkedin');
+    if (liEl && c.linkedinLink) liEl.href = c.linkedinLink;
 
   })
   .catch(function() { /* fail silently — page uses HTML defaults */ });
