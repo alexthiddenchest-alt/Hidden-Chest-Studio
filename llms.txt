@@ -1,0 +1,26 @@
+# Hidden Chest Studio
+
+> Malaysian game development studio based in Kuala Lumpur, founded in 2020. Builds branded minigames, gamified brand activations, and custom games/apps for enterprise clients, alongside its own flagship IP. Legal entity: Hidden Chest Studio Sdn. Bhd. (Malaysia company no. 202001029555 / 1385875-P).
+
+Hidden Chest Studio has delivered interactive projects for AirAsia and Khazanah Nasional, and partners with MDEC. Its flagship title, Midwest 90: Rapid City, is a tycoon survival simulator in development for Steam. Every project is led directly by one of the studio's three co-founders — there is no outsourcing layer between the client and the build.
+
+## Services
+- [Branded Minigame Development](https://www.hiddenchest.studio/services/branded-minigames.html): Custom minigames built for brand campaigns and marketing activations.
+- [Gamification Agency](https://www.hiddenchest.studio/services/gamification.html): Gamified apps, enterprise engagement systems, and rewards/loyalty mechanics.
+- [Game Development Studio](https://www.hiddenchest.studio/services/game-development.html): Full game development and dev-support services across PC, mobile, and web.
+
+## Flagship IP
+- [Midwest 90: Rapid City (Steam)](https://store.steampowered.com/app/1818480/Midwest_90_Rapid_City/): Tycoon survival simulator set in a 1990s American Midwest town.
+
+## Blog
+- [How Branded Minigames Drive Engagement for Modern Brands](https://www.hiddenchest.studio/blog/branded-minigames-for-marketing.html)
+- [What Is Gamification for Brand Activation?](https://www.hiddenchest.studio/blog/what-is-gamification-brand-activation.html)
+
+## Company
+- Website: https://www.hiddenchest.studio/
+- Location: Kuala Lumpur, Malaysia
+- Founded: 2020
+- Contact: hiddencheststudios@gmail.com
+- LinkedIn: https://www.linkedin.com/company/hidden-chest-studio/
+- Discord: https://discord.gg/H64hNB6gzt
+- Press coverage: The Star, Vulcan Post, Free Malaysia Today, The Sun, IGN
