@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Poster draft — all pages | Hidden Chest Studio</title>
+<link rel="icon" href="images/HIddenChestLogo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800;900&family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="hcs-draft.css">
+<style>
+  .idx { max-width: var(--maxw); margin: 0 auto; padding: clamp(40px,6vw,90px) var(--gut); }
+  .idx-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 1px;
+              background: var(--rule-soft); border: 1px solid var(--rule-soft); margin-top: clamp(30px,4vw,52px); }
+  .idx-row { background: var(--ink); padding: clamp(24px,3vw,38px); display: flex; flex-direction: column; gap: 14px; }
+  .idx-kind { font-family: var(--font-label); font-weight: 600; font-size: 12px; letter-spacing: .11em;
+              text-transform: uppercase; color: var(--mute); }
+  .idx-title { font-family: var(--font-display); font-weight: 900; font-size: clamp(26px,2.6vw,40px);
+               line-height: .95; letter-spacing: -.012em; }
+  .idx-links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: auto; padding-top: 8px; }
+  .idx-links a { font-family: var(--font-display); font-weight: 800; font-size: 16px; letter-spacing: .08em;
+                 text-transform: uppercase; padding: 11px 16px; border: 1px solid var(--rule);
+                 min-height: 44px; display: inline-flex; align-items: center; transition: border-color .18s, color .18s; }
+  .idx-links a:hover { border-color: var(--cream); }
+  .idx-links a.is-draft { background: var(--red); color: #fff; border-color: var(--red); }
+  .idx-links a.is-draft:hover { background: var(--red-press); border-color: var(--red-press); }
+  .note { max-width: 62ch; font-size: clamp(16px,1.2vw,19px); line-height: 1.7; color: var(--mute); }
+  .note strong { color: var(--cream); font-weight: 600; }
+  @media (max-width: 768px) { .idx-grid { grid-template-columns: minmax(0,1fr); } }
+</style>
+</head>
+<body>
+
+<div class="idx">
+  <div class="hero-kicker"><i></i><span class="kicker">Poster direction, working draft</span></div>
+  <h1 class="h2" style="max-width:16ch">Every page, side by side</h1>
+  <p class="note" style="margin-top:22px">
+    Six pages rebuilt in the poster direction. Each row links the draft and the page it replaces,
+    so you can flip between them. Nothing here is live: the drafts are separate files and your
+    published site is untouched. All six share one stylesheet, <strong>hcs-draft.css</strong>,
+    so a change to the type scale or the accent lands everywhere at once.
+  </p>
+
+  <div class="idx-grid">
+
+    <div class="idx-row">
+      <span class="idx-kind">Homepage</span>
+      <span class="idx-title">Hidden Chest Studio</span>
+      <p class="note" style="font-size:16px">The manifesto hero, the horizontal work rail, services as three statement rows.</p>
+      <div class="idx-links">
+        <a class="is-draft" href="index-draft.html">Draft</a>
+        <a href="index.html">Current</a>
+      </div>
+    </div>
+
+    <div class="idx-row">
+      <span class="idx-kind">Service</span>
+      <span class="idx-title">Game development</span>
+      <p class="note" style="font-size:16px">Inner-page hero, prose against a red stat rail, FAQ as a real disclosure list.</p>
+      <div class="idx-links">
+        <a class="is-draft" href="services/game-development-draft.html">Draft</a>
+        <a href="services/game-development.html">Current</a>
+      </div>
+    </div>
+
+    <div class="idx-row">
+      <span class="idx-kind">Service</span>
+      <span class="idx-title">Branded minigames</span>
+      <p class="note" style="font-size:16px">Same template, campaign-side copy. Related services as two full-bleed cards.</p>
+      <div class="idx-links">
+        <a class="is-draft" href="services/branded-minigames-draft.html">Draft</a>
+        <a href="services/branded-minigames.html">Current</a>
+      </div>
+    </div>
+
+    <div class="idx-row">
+      <span class="idx-kind">Service</span>
+      <span class="idx-title">Gamification</span>
+      <p class="note" style="font-size:16px">Same template, enterprise-side copy.</p>
+      <div class="idx-links">
+        <a class="is-draft" href="services/gamification-draft.html">Draft</a>
+        <a href="services/gamification.html">Current</a>
+      </div>
+    </div>
+
+    <div class="idx-row">
+      <span class="idx-kind">Article</span>
+      <span class="idx-title">Branded minigames for marketing</span>
+      <p class="note" style="font-size:16px">Reading measure at 68 characters, the answer block on a red rule.</p>
+      <div class="idx-links">
+        <a class="is-draft" href="blog/branded-minigames-for-marketing-draft.html">Draft</a>
+        <a href="blog/branded-minigames-for-marketing.html">Current</a>
+      </div>
+    </div>
+
+    <div class="idx-row">
+      <span class="idx-kind">Article</span>
+      <span class="idx-title">Gamification for brand activation</span>
+      <p class="note" style="font-size:16px">Same article template.</p>
+      <div class="idx-links">
+        <a class="is-draft" href="blog/what-is-gamification-brand-activation-draft.html">Draft</a>
+        <a href="blog/what-is-gamification-brand-activation.html">Current</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>
